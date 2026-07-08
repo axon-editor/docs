@@ -1,45 +1,21 @@
-# axon-docs
+# Axon Docs
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+Documentation for [Axon](https://github.com/axon-editor/axon) — installation, configuration, features, and guides for `axon-agent` (ask / fix / commit).
 
-Run development server:
+## Running locally
 
 ```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
+git clone https://github.com/axon-editor/docs.git
+cd docs
+# install deps + dev server command, once the docs framework is chosen
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+## Contributing
 
-## Explore
+Found something unclear, outdated, or missing? Open a PR — docs contributions don't need an issue first, small fixes and clarifications are always welcome directly.
 
-In the project, you can see:
+For larger restructuring (new sections, navigation changes), open an issue first to discuss.
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+## License
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
-
-### Fumadocs MDX
-
-A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
-
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
-
-## Learn More
-
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+Same license as [`axon`](https://github.com/axon-editor/axon).
