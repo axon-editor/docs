@@ -1,0 +1,47 @@
+---
+title: Workspace Search
+description: Search and replace across the active workspace.
+icon: Search
+---
+
+import { Screenshot } from '@/components/docs/shared';
+
+Axon provides full-text search across the workspace. Search through files, find and replace text, and jump directly to results in the editor.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-07.png"
+  alt="Axon command and search modal"
+  caption="Workspace search and command surfaces stay close to the editor so results and actions jump directly into the active project."
+/>
+
+## Opening Search
+
+- Click the Search icon in the sidebar.
+- Use `Cmd+Shift+F` on macOS or `Ctrl+Shift+F` on Windows/Linux.
+- Use the command palette action `Search Workspace`.
+
+## Search Features
+
+- Case-sensitive search.
+- Whole-word matching.
+- Regular expression patterns.
+- File exclusions for generated, vendor, and binary paths.
+- Replace in files across multiple results.
+
+## Results
+
+Results are grouped by file with line numbers and surrounding context. Click any result to jump directly to that line and column.
+
+## Default Exclusions
+
+```txt
+.git
+node_modules
+dist
+build
+out
+target
+__pycache__
+*.log
+*.bin
+```

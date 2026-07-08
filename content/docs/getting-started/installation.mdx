@@ -1,0 +1,31 @@
+---
+title: Installation
+description: Install Axon and understand the current platform limitations.
+icon: Download
+---
+
+Axon releases are published through GitHub Releases. Download the platform artifact that matches your machine and install it with the normal flow for your operating system.
+
+## Platform Assets
+
+| Platform | Asset |
+| --- | --- |
+| macOS Apple Silicon | `Axon-{version}-arm64.dmg` |
+| macOS Intel | `Axon-{version}.dmg` |
+| Windows | `Axon.Setup.{version}.exe` |
+| Linux AppImage | `Axon-{version}.AppImage` |
+| Debian / Ubuntu | `axon_{version}_amd64.deb` |
+
+## macOS Gatekeeper
+
+Current macOS builds are unsigned personal builds. If macOS blocks the first launch, open the app from Finder with the standard manual approval flow. Fully automatic signed updates require an Apple Developer certificate, hardened runtime, and notarization.
+
+## First Launch
+
+After launch, open a folder as the workspace. Axon expects real project roots because file search, Git status, language servers, terminal sessions, and the local agent all depend on workspace context.
+
+## System Requirements
+
+- Node, Go, Rust, Java, .NET, PHP, Docker, or Python may still be required by the project you are editing.
+- Axon can bundle language-server binaries or npm servers, but language tooling still needs the project dependencies and runtimes that make the project valid.
+- Release builds should prefer bundled language-server resources over global binaries when they are available.

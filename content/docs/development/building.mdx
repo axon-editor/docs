@@ -1,0 +1,85 @@
+---
+title: Building From Source
+description: Build Axon from source code.
+icon: Wrench
+---
+
+Axon is open source. You can build the editor from source to test the latest changes, contribute patches, or create custom builds.
+
+## Prerequisites
+
+- Node.js v18 or later.
+- Go v1.21 or later.
+- Git for cloning the repository.
+- `make` is optional for build scripts.
+
+## Clone
+
+```bash
+git clone https://github.com/GordenArcher/axon
+cd axon
+```
+
+## Development Mode
+
+You need two terminal sessions: one for the Go backend and one for the Electron frontend.
+
+### Terminal 1: Go Backend
+
+```bash
+cd core
+go run cmd/axon/main.go
+```
+
+The backend runs on `localhost:7777`.
+
+### Terminal 2: Electron App
+
+```bash
+cd editor
+npm install
+npm run build:main
+npm run dev
+```
+
+## Production Build
+
+```bash
+cd editor
+npm run build
+npm run pack
+```
+
+Platform packages:
+
+```bash
+npm run dist:mac
+npm run dist:win
+npm run dist:linux
+```
+
+Build output goes to `editor/release/`.
+
+## Language Servers
+
+```bash
+npm run build:language-servers
+```
+
+## Project Structure
+
+```txt
+axon/
+├── core/
+│   ├── cmd/axon/
+│   └── internal/
+│       ├── fs/
+│       ├── server/
+│       └── terminal/
+├── editor/
+│   ├── src/
+│   │   ├── main/
+│   │   ├── preload/
+│   │   └── renderer/
+└── docs/
+```

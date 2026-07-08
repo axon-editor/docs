@@ -5,7 +5,6 @@ import {
   stepCountIs,
   streamText,
   tool,
-  toUIMessageStream,
 } from 'ai';
 import { z } from 'zod';
 import { source } from '@/lib/source';
@@ -70,7 +69,7 @@ const systemPrompt = [
   'If you cannot find the answer in search results, say you do not know and suggest a better search query.',
 ].join('\n');
 
-export async function POST(req: Request, ctx: RouteContext<"/api/chat">) {
+export async function POST(req: Request) {
   const reqJson = await req.json();
 
   const result = streamText({
@@ -95,7 +94,7 @@ export async function POST(req: Request, ctx: RouteContext<"/api/chat">) {
   });
 
   return createUIMessageStreamResponse({
-    stream: toUIMessageStream({ stream: result.stream }),
+    stream: result.toUIMessageStream(),
   });
 }
 

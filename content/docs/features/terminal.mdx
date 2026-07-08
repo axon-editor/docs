@@ -1,0 +1,40 @@
+---
+title: Integrated Terminal
+description: PTY-backed terminal sessions in Axon.
+icon: Terminal
+---
+
+import { Screenshot } from '@/components/docs/shared';
+
+Axon includes a PTY-backed integrated terminal owned by the Go backend and rendered through xterm.js. You can run commands, use Git, start tools, and keep terminal sessions alive while the panel hides, the renderer reconnects, or the workbench changes state.
+
+<Screenshot
+  src="/media/screenshots/axon-screenshot-09.png"
+  alt="Axon integrated terminal"
+  caption="The terminal is treated as a first-class workspace surface with persistent sessions and editor-aware controls."
+/>
+
+## Opening The Terminal
+
+- Click the Terminal icon in the sidebar.
+- Use `Cmd+\`` on macOS or `Ctrl+\`` on Windows/Linux.
+- Run `Toggle Terminal` from the command palette.
+
+## Terminal Tabs
+
+- Create a new tab with the plus button or `Ctrl+Shift+\``.
+- Close a tab with the close button or `Ctrl+Shift+W`.
+- Rename a tab by double-clicking the tab title.
+
+## Behavior
+
+- Full PTY support for interactive programs.
+- Copy and paste with `Ctrl+Shift+C` and `Ctrl+Shift+V`.
+- WebSocket connection to the Go backend for real-time I/O.
+- Persistent sessions across renderer reloads.
+- Scrollback replay when a terminal view reconnects.
+- Backpressure handling for long-running agent output.
+
+## Axon CLI
+
+Use `axon` for an interactive Axon Agent session, `axon .` to open the current project in Axon, and `axon resume` to continue a saved workspace conversation.

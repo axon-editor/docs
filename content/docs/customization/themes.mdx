@@ -1,0 +1,58 @@
+---
+title: Themes
+description: Customize Axon appearance.
+icon: Palette
+---
+
+Axon includes a built-in dark theme with Catppuccin-inspired colors. You can customize colors, import fonts, or create your own themes.
+
+## Built-In Theme
+
+- Deep blue-gray editor background.
+- High contrast editor colors.
+- Catppuccin icon colors.
+- Monaspace Neon font for code.
+- Inter font for UI.
+
+## Changing Themes
+
+Open the Command Palette with `Cmd+Shift+P` or `Ctrl+Shift+P`, then type `Theme` to switch themes.
+
+## Custom Theme Example
+
+```json
+{
+  "name": "my-theme",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1e1e2e",
+    "editor.foreground": "#cdd6f4",
+    "editor.lineHighlightBackground": "#313244",
+    "editor.selectionBackground": "#45475a",
+    "terminal.background": "#1e1e2e",
+    "terminal.foreground": "#cdd6f4",
+    "sideBar.background": "#181825",
+    "sideBar.foreground": "#cdd6f4"
+  },
+  "tokenColors": [
+    {
+      "scope": "keyword",
+      "settings": { "foreground": "#cba6f7" }
+    },
+    {
+      "scope": "string",
+      "settings": { "foreground": "#a6e3a1" }
+    }
+  ]
+}
+```
+
+## Fonts
+
+```json
+{
+  "editor.fontFamily": "Monaspace Neon, SF Mono, monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true
+}
+```

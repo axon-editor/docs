@@ -17,6 +17,7 @@
     "class-variance-authority": "^0.7.1",
     "cnfast": "^0.0.8",
     "flexsearch": "^0.8.212",
+    "framer-motion": "^12.42.2",
     "fumadocs-core": "16.11.1",
     "fumadocs-mdx": "15.1.0",
     "fumadocs-ui": "npm:@fumadocs/base-ui@16.11.1",

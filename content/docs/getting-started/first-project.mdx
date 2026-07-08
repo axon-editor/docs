@@ -1,0 +1,36 @@
+---
+title: First Project
+description: Open a workspace and use the core Axon workflow.
+icon: FolderOpen
+---
+
+import { Screenshot, StepList } from '@/components/docs/shared';
+
+The first Axon workflow starts with a real project folder. Opening only a nested `src` directory can weaken Git, language-server, and dependency resolution because the editor may miss `package.json`, `go.mod`, `Cargo.toml`, `pyproject.toml`, or other project metadata.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-01.png"
+  alt="Axon workspace file tree"
+  caption="Open the folder that owns the project metadata so the editor, terminal, Git, and language servers share the same root."
+/>
+
+## Flow
+
+<StepList
+  steps={[
+    'Open the project root from the workspace picker.',
+    'Use the file tree to create or open a source file.',
+    'Split panes when you need reference code beside active work.',
+    'Open the terminal and run install, test, dev, or build commands.',
+    'Check Git status and inspect diffs before committing.',
+    'Use Axon Agent for project-aware questions or staged commit drafts.',
+  ]}
+/>
+
+## What To Check
+
+- Files open into tabs and can be moved between panes.
+- Terminal tabs keep shell sessions alive while the panel hides or reconnects.
+- Workspace search opens results at the matching file, line, and column.
+- Git decorations show changed, deleted, and untracked files.
+- Language-server features improve after project dependencies are installed.

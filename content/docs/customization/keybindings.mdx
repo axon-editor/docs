@@ -1,0 +1,59 @@
+---
+title: Keybindings
+description: Customize keyboard shortcuts in Axon.
+icon: Keyboard
+---
+
+Axon allows you to customize keyboard shortcuts to match your workflow. Keybindings are stored in `~/.axonc/keybindings.json`.
+
+## Defaults
+
+| Command | macOS | Windows / Linux |
+| --- | --- | --- |
+| New File | `Cmd+N` | `Ctrl+N` |
+| Open File | `Cmd+O` | `Ctrl+O` |
+| Save | `Cmd+S` | `Ctrl+S` |
+| Save All | `Cmd+Alt+S` | `Ctrl+Alt+S` |
+| Close Tab | `Cmd+W` | `Ctrl+W` |
+| Find | `Cmd+F` | `Ctrl+F` |
+| Replace | `Cmd+H` | `Ctrl+H` |
+| Find in Files | `Cmd+Shift+F` | `Ctrl+Shift+F` |
+| Command Palette | `Cmd+Shift+P` | `Ctrl+Shift+P` |
+| Toggle Terminal | `Cmd+\`` | `Ctrl+\`` |
+| Split Pane Right | `Cmd+\` | `Ctrl+\` |
+| Go to Definition | `F12` | `F12` |
+| Find References | `Shift+F12` | `Shift+F12` |
+| Rename Symbol | `F2` | `F2` |
+| Format Document | `Shift+Alt+F` | `Shift+Alt+F` |
+
+## Custom Keybindings
+
+```json
+[
+  {
+    "key": "ctrl+shift+r",
+    "command": "workbench.action.reloadWindow"
+  },
+  {
+    "key": "cmd+k cmd+s",
+    "command": "workbench.action.openSettings"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "workbench.view.explorer"
+  }
+]
+```
+
+## Removing Keybindings
+
+Set the command to `-` to remove a default binding.
+
+```json
+[
+  {
+    "key": "cmd+w",
+    "command": "-"
+  }
+]
+```

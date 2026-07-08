@@ -1,0 +1,46 @@
+---
+title: Getting Started
+description: Start using Axon with a workspace, files, terminal, and settings.
+icon: Rocket
+---
+
+import { DocCards, StepList } from '@/components/docs/shared';
+
+Axon is built for daily project work. The first useful path is simple: install the app, open a folder, create or open files, run the project terminal, and tune the workspace.
+
+## Recommended First Flow
+
+<StepList
+  steps={[
+    'Install the build that matches your platform from the release page.',
+    'Open a folder as your workspace.',
+    'Create or open a file from the sidebar.',
+    'Open the terminal and run your project commands.',
+    'Open settings to choose a theme, font preset, and language-server options.',
+  ]}
+/>
+
+## Continue
+
+<DocCards
+  items={[
+    {
+      title: 'Installation',
+      description: 'Platform notes, unsigned macOS builds, and first launch expectations.',
+      href: '/docs/getting-started/installation',
+      icon: 'updates',
+    },
+    {
+      title: 'First Project',
+      description: 'Open a workspace and use files, panes, terminal, Git, and settings together.',
+      href: '/docs/getting-started/first-project',
+      icon: 'editor',
+    },
+  ]}
+/>
+
+## Notes
+
+- macOS builds are unsigned personal builds until signing is available.
+- Some language servers need system runtimes such as a JDK, .NET, Go, Rust, PHP, or Docker.
+- Python projects can use a selected virtual environment for imports.

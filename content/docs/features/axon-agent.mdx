@@ -1,0 +1,45 @@
+---
+title: Axon Agent
+description: Local Axon Agent, workspace sessions, slash commands, and project-aware workflows.
+icon: Bot
+---
+
+import { CommandTable, Screenshot } from '@/components/docs/shared';
+
+Axon Agent is local-first and project-aware. It talks through `axon-core`, uses Axon-facing model names, streams responses, keeps workspace conversations, and can use backend project tools for file reads and code search.
+
+## Why It Lives In The Editor
+
+The agent is designed to work from Axon's project state: Problems, Git, terminal sessions, file watching, language servers, and workspace roots. That is different from a generic chat box because the agent can be wired to the same facts the editor already knows.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-17.png"
+  alt="Axon Agent terminal session"
+  caption="Axon Agent has a dedicated terminal identity while still living inside the same workspace shell and editor context."
+/>
+
+## Terminal Command
+
+<CommandTable
+  rows={[
+    ['axon', 'Start a terminal-native Axon Agent conversation in the current workspace.'],
+    ['axon .', 'Open the current directory in Axon without replacing an already-open workspace window.'],
+    ['axon ask "why is this slow?"', 'Stream a one-off project-aware answer from the local agent.'],
+    ['axon resume', 'List saved conversations for the current workspace.'],
+    ['axon resume :conversation', 'Restore a specific terminal conversation with its workspace context.'],
+    ['axon commit', 'Draft a commit message from staged changes and ask before committing.'],
+    ['axon fix', 'Use the current Problems snapshot to propose workspace-safe edits.'],
+  ]}
+/>
+
+## Slash Commands
+
+Inside an interactive session, `/` opens the local command picker. Commands filter while typing and can be selected with arrow keys and Enter. `/model` opens the Axon model picker using product names instead of raw local runtime names.
+
+## Guardrails
+
+Axon injects exact project facts when project context is attached and tells local models not to invent placeholder paths, counts, filenames, commands, URLs, emails, API names, or project facts.
+
+## Still Being Built
+
+The next agent pass continues the terminal service boundary, improves PTY reliability for long-running agent output, and replaces the raw composer with a fuller terminal chat surface once the dependency stack is ready.

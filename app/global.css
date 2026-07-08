@@ -4,6 +4,114 @@
 
 html {
   scrollbar-gutter: stable;
+  background: #000;
+}
+
+body {
+  background: #000;
+  color: #f4f4f5;
+}
+
+:root,
+.dark {
+  --color-fd-background: #000;
+  --color-fd-foreground: #f4f4f5;
+  --color-fd-card: #050505;
+  --color-fd-card-foreground: #f4f4f5;
+  --color-fd-popover: #050505;
+  --color-fd-popover-foreground: #f4f4f5;
+  --color-fd-primary: #ffffff;
+  --color-fd-primary-foreground: #000000;
+  --color-fd-secondary: #0a0a0a;
+  --color-fd-secondary-foreground: #e4e4e7;
+  --color-fd-muted: #0a0a0a;
+  --color-fd-muted-foreground: #a1a1aa;
+  --color-fd-accent: #18181b;
+  --color-fd-accent-foreground: #f4f4f5;
+  --color-fd-border: #27272a;
+  --color-fd-ring: #67e8f9;
+}
+
+#nd-docs-layout,
+#nd-docs-layout main,
+#nd-docs-layout article {
+  background: #000;
+}
+
+#nd-subnav {
+  border-color: #27272a;
+  background: rgb(0 0 0 / 0.86);
+  color: #f4f4f5;
+}
+
+#nd-sidebar {
+  background: #000;
+  border-color: #27272a;
+  color: #e4e4e7;
+}
+
+#nd-sidebar > div:first-child {
+  border-bottom: 1px solid #18181b;
+  background: linear-gradient(180deg, #050505 0%, #000 100%);
+}
+
+#nd-sidebar a[href="/"] {
+  color: #f4f4f5;
+}
+
+#nd-sidebar [data-search-full] {
+  border-color: #27272a;
+  background: #09090b;
+  color: #a1a1aa;
+}
+
+#nd-sidebar [data-search-full]:hover {
+  border-color: #3f3f46;
+  background: #18181b;
+  color: #f4f4f5;
+}
+
+#nd-sidebar [data-search-full] kbd {
+  border-color: #27272a;
+  background: #000;
+  color: #71717a;
+}
+
+#nd-sidebar a,
+#nd-sidebar button {
+  color: #a1a1aa;
+}
+
+#nd-sidebar a:hover,
+#nd-sidebar button:hover {
+  background: #18181b !important;
+  color: #f4f4f5 !important;
+}
+
+#nd-sidebar a[data-active="true"] {
+  background: #ffffff !important;
+  color: #000 !important;
+  font-weight: 600;
+}
+
+#nd-sidebar a[data-active="true"] svg {
+  color: #000;
+}
+
+#nd-sidebar [role="presentation"] [class*="mask-"] {
+  scrollbar-color: #3f3f46 transparent;
+}
+
+#nd-sidebar > div:last-child > div {
+  border-color: #27272a;
+  background: #09090b;
+  color: #a1a1aa;
+}
+
+[data-sidebar-panel] {
+  border-color: #27272a !important;
+  background: #09090b !important;
+  color: #e4e4e7 !important;
 }
 
 html > body[data-scroll-locked] {

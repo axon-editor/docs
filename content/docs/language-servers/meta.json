@@ -1,0 +1,22 @@
+{
+  "title": "Language Servers",
+  "pages": [
+    "index",
+    "typescript",
+    "python",
+    "go",
+    "rust",
+    "html",
+    "css",
+    "tailwind",
+    "json",
+    "yaml",
+    "docker",
+    "java",
+    "cpp",
+    "csharp",
+    "kotlin",
+    "lua",
+    "php"
+  ]
+}

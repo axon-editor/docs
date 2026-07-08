@@ -1,0 +1,34 @@
+---
+title: Language Servers
+description: Language-server support and project setup in Axon.
+icon: Braces
+---
+
+import { DocCards, Screenshot } from '@/components/docs/shared';
+
+Axon uses language servers for real project intelligence. Monaco can tokenize and edit text, but the language server understands imports, dependencies, symbols, project configuration, diagnostics, rename, references, definitions, and code actions.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-15.png"
+  alt="Axon TypeScript autocomplete suggestions"
+  caption="Project-aware completions depend on the opened root, package metadata, and a connected language server."
+/>
+
+## Supported Pages
+
+<DocCards
+  items={[
+    { title: 'TypeScript and JavaScript', description: 'Web project intelligence through TypeScript compiler services.', href: '/docs/language-servers/typescript', icon: 'lsp' },
+    { title: 'Python', description: 'Virtual-environment-aware imports, diagnostics, and navigation.', href: '/docs/language-servers/python', icon: 'lsp' },
+    { title: 'Go', description: 'gopls support for Go modules and workspaces.', href: '/docs/language-servers/go', icon: 'lsp' },
+    { title: 'Rust', description: 'rust-analyzer support for Cargo projects.', href: '/docs/language-servers/rust', icon: 'lsp' },
+    { title: 'HTML and CSS', description: 'Markup and stylesheet support, plus embedded web contexts.', href: '/docs/language-servers/html', icon: 'lsp' },
+    { title: 'Tailwind CSS', description: 'Utility-class completions, hovers, colors, variants, and diagnostics.', href: '/docs/language-servers/tailwind', icon: 'lsp' },
+    { title: 'JSON and YAML', description: 'Schema-aware configuration editing.', href: '/docs/language-servers/json', icon: 'lsp' },
+    { title: 'More Languages', description: 'Docker, Java, C/C++, C#, Kotlin, Lua, and PHP.', href: '/docs/language-servers/docker', icon: 'lsp' },
+  ]}
+/>
+
+## Root Rule
+
+Open the folder that owns the project metadata. Most weak language-server behavior comes from opening a nested folder instead of the root that owns `package.json`, `tsconfig.json`, `go.mod`, `Cargo.toml`, `pyproject.toml`, `composer.json`, `.sln`, `pom.xml`, `build.gradle`, or `compile_commands.json`.

@@ -1,0 +1,68 @@
+---
+title: User Extensions
+description: Extending Axon functionality from the user config folder.
+icon: Package
+---
+
+import { Screenshot } from '@/components/docs/shared';
+
+Axon supports a declarative extension system. Extensions can add language support, themes, keybindings, and custom commands.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-05.png"
+  alt="Axon extensions modal"
+  caption="The Extensions surface shows built-ins as extension-shaped entries, matching the direction of Axon's manifest and contribution system."
+/>
+
+## Installing Extensions
+
+Extensions are installed by adding them to the `extensions` directory in your Axon config folder:
+
+```txt
+~/.axonc/extensions/
+```
+
+## Extension Structure
+
+```txt
+my-extension/
+├── axon.extension.json
+├── themes/
+│   └── my-theme.axon-theme.json
+├── snippets/
+│   └── javascript.json
+└── icons/
+    └── file.svg
+```
+
+## Manifest
+
+```json
+{
+  "$schema": "https://axoneditor.com/schemas/extension/v0.1.0.json",
+  "id": "my-extension",
+  "name": "My Extension",
+  "publisher": "GordenArcher",
+  "version": "1.0.0",
+  "description": "Adds custom functionality",
+  "contributes": {
+    "themes": [
+      {
+        "id": "my-theme",
+        "label": "My Theme",
+        "path": "./themes/my-theme.axon-theme.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      }
+    ]
+  }
+}
+```
+
+## Roadmap
+
+Language server support is implemented as built-in extensions. A full marketplace and discovery system is planned; current user extensions are installed manually.

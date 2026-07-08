@@ -1,0 +1,42 @@
+---
+title: Release Process
+description: How Axon releases are published.
+icon: Tags
+---
+
+Axon uses GitHub Releases as the source of truth for changelog entries, release notes, and platform downloads.
+
+## Release Flow
+
+1. Version is bumped in the editor package files.
+2. `CHANGELOG.md` and docs release notes are updated.
+3. A version tag is pushed and GitHub Actions builds platform assets.
+4. The GitHub release is published with notes and marked as the latest release.
+
+## Versioning
+
+Axon follows [Semantic Versioning](https://semver.org/):
+
+- Major versions contain incompatible API changes.
+- Minor versions contain backwards-compatible functionality.
+- Patch versions contain backwards-compatible bug fixes.
+
+## Build Assets
+
+- `Axon-{version}-arm64.dmg` for macOS Apple Silicon.
+- `Axon-{version}.dmg` for macOS Intel.
+- `Axon.Setup.{version}.exe` for Windows.
+- `Axon-{version}.AppImage` for Linux AppImage.
+- `axon_{version}_amd64.deb` for Debian and Ubuntu.
+
+## macOS Signing
+
+Current macOS builds are unsigned personal builds. For automatic in-app updates, the app needs signing and notarization by Apple. That is planned for a future release.
+
+## Update Process
+
+1. Open the update notice in Axon.
+2. Download the correct release asset for your platform.
+3. Replace the old app manually if the in-app updater cannot relaunch.
+
+There are currently no automated nightly builds. Builds are published only for official releases.

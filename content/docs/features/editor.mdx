@@ -1,0 +1,47 @@
+---
+title: Editor
+description: Core editor behavior in Axon.
+icon: CodeXml
+---
+
+import { Screenshot } from '@/components/docs/shared';
+
+Axon's editor is built for daily project work: open files, keep multiple panes active, preview Markdown and media, and protect dirty changes before a tab closes. Recent stabilization work focused on preserving scroll position, avoiding editor flicker, and keeping Monaco state owned by the active editor instead of remounting surfaces unnecessarily.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-10.png"
+  alt="Axon editor showing themed syntax"
+  caption="The editor view shows the current syntax-coloring pipeline inside a real workspace file."
+/>
+
+## Tabs and Panes
+
+Files open into editor tabs. Tabs can be moved between panes, pinned, and closed with dirty-file prompts when unsaved changes exist.
+
+## Previews
+
+Markdown, images, videos, and HTML can open in preview surfaces. External links use the system browser, while local Markdown links stay inside Axon when the target file exists in the workspace.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-18.png"
+  alt="Axon Markdown preview"
+  caption="Markdown preview opens as an editor tab, so project notes and rendered docs stay inside the same workspace context."
+/>
+
+## Find In File
+
+Use the editor find control for current-file search. Selected text seeds the query when opening find, and editing the find query does not steal the original editor cursor after a query already exists.
+
+## Stability Rules
+
+- Dirty saves preserve the current scroll position instead of jumping to the bottom of the file.
+- Change decorations are replaced instead of stacked.
+- Command/control-click is the explicit jump-to-definition gesture for imported and exported symbols.
+- TypeScript hover rendering avoids competing stacked hover cards.
+- Embedded HTML in TSX/JSX receives themed token colors instead of falling back to plain white text.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-14.png"
+  alt="Axon editor hover tooltip"
+  caption="Hover details appear inline with the current code instead of becoming a detached surface that interrupts reading."
+/>

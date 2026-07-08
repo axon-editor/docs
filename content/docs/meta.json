@@ -1,0 +1,13 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "index",
+    "getting-started",
+    "features",
+    "language-servers",
+    "customization",
+    "extensions",
+    "updates",
+    "development"
+  ]
+}

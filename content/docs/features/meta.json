@@ -1,0 +1,4 @@
+{
+  "title": "Features",
+  "pages": ["editor", "split-panes", "search", "terminal", "git", "axon-agent"]
+}

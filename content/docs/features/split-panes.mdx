@@ -1,0 +1,31 @@
+---
+title: Split Panes
+description: Multi-pane editing in Axon.
+icon: Columns2
+---
+
+Axon supports splitting the editor into multiple panes, allowing several files to stay visible side by side. This is useful when comparing code, editing related files, or keeping reference documentation open while you work.
+
+## Shortcuts
+
+| Action | macOS | Windows / Linux |
+| --- | --- | --- |
+| Split pane right | `Cmd+\` | `Ctrl+\` |
+| Split pane down | `Cmd+Shift+\` | `Ctrl+Shift+\` |
+| Close current pane | `Cmd+W` | `Ctrl+W` |
+| Focus pane | `Cmd+1`, `Cmd+2` | `Ctrl+1`, `Ctrl+2` |
+
+## Managing Panes
+
+- Drag tabs between panes.
+- Resize panes by dragging the divider.
+- Close tabs from the tab button or keyboard shortcut.
+- Keep up to a 2x2 grid for focused multi-pane work.
+
+## Shared Models
+
+The same file opened in multiple panes shares a single editor model. Changes made in one pane are immediately visible in every pane showing that file.
+
+## Dirty Indicators
+
+When a file has unsaved changes, the tab shows a dirty indicator. Axon prompts before closing a pane with unsaved files.

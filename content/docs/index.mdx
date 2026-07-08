@@ -1,13 +1,80 @@
 ---
-title: Hello World
-description: Your first document
+title: Axon Documentation
+description: Installation, workspace workflows, language tooling, extensions, updates, and Axon Agent.
+icon: BookOpen
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+import { DocCards, Screenshot, StepList } from '@/components/docs/shared';
+import { Reveal } from '@/components/docs/motion';
 
-## What is Next?
+<Reveal>
+Axon is a desktop code editor built around real workspace behavior: open a folder, edit files, use panes, run terminals, inspect Git changes, tune the editor from settings, and work with a local project-aware agent.
+</Reveal>
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
-</Cards>
+<Screenshot
+  src="/media/screenshots/axon-latest-01.png"
+  alt="Axon workspace with file tree and empty editor"
+  caption="Axon starts from the workspace: file tree, editor tabs, status surfaces, and the project root all stay visible."
+/>
+
+## Start Here
+
+<StepList
+  steps={[
+    'Install the build that matches your platform.',
+    'Open a folder as your workspace.',
+    'Create or open a file from the sidebar.',
+    'Open the terminal and run your project commands.',
+    'Choose a theme, font preset, and language-server settings.',
+  ]}
+/>
+
+## Documentation Sections
+
+<DocCards
+  items={[
+    {
+      title: 'Getting Started',
+      description: 'Install Axon, open the first workspace, and learn the first project flow.',
+      href: '/docs/getting-started',
+      icon: 'panel',
+    },
+    {
+      title: 'Features',
+      description: 'Editor behavior, split panes, search, terminal, Git, and Axon Agent.',
+      href: '/docs/features/editor',
+      icon: 'editor',
+    },
+    {
+      title: 'Language Servers',
+      description: 'Project-aware setup and troubleshooting for supported languages and config formats.',
+      href: '/docs/language-servers',
+      icon: 'lsp',
+    },
+    {
+      title: 'Customization',
+      description: 'Settings, themes, keybindings, and extension packages.',
+      href: '/docs/customization/settings',
+      icon: 'settings',
+    },
+    {
+      title: 'Extensions',
+      description: 'Manifest shape, contribution types, activation boundaries, and extension locations.',
+      href: '/docs/extensions',
+      icon: 'extensions',
+    },
+    {
+      title: 'Development',
+      description: 'Build Axon from source, contribute changes, and understand release assets.',
+      href: '/docs/development/building',
+      icon: 'build',
+    },
+  ]}
+/>
+
+## Important Notes
+
+- macOS builds are unsigned personal builds until signing and notarization are available.
+- Some language servers still need system runtimes such as a JDK, .NET SDK, Go, Rust, PHP, or Docker.
+- Python projects can use a selected virtual environment so imports and completions match the real project.
+- Update checks use GitHub Releases, but unsigned macOS builds may still require manual replacement.

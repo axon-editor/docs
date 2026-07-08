@@ -1,0 +1,71 @@
+---
+title: Settings
+description: Configure Axon behavior.
+icon: Settings
+---
+
+import { Screenshot } from '@/components/docs/shared';
+
+Axon stores configuration in `~/.axonc/settings.json`. You can edit settings through the Settings UI or directly in JSON.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-04.png"
+  alt="Axon settings modal"
+  caption="The Settings UI groups appearance, editor, terminal, Git, and extension options into focused sections."
+/>
+
+## Opening Settings
+
+- Click the Settings gear icon in the sidebar.
+- Run `Open Settings` from the command palette.
+- Use `Cmd+,` on macOS or `Ctrl+,` on Windows/Linux.
+
+## Editor
+
+```json
+{
+  "editor.fontSize": 14,
+  "editor.fontFamily": "Monaspace Neon",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.5,
+  "editor.minimap.enabled": true,
+  "editor.wordWrap": "off",
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "selection",
+  "editor.cursorBlink": "blink"
+}
+```
+
+## Appearance
+
+```json
+{
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "sora-dark",
+  "workbench.iconTheme": "catppuccin",
+  "editor.fontFamily": "Inter, system-ui"
+}
+```
+
+## Terminal
+
+```json
+{
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.cursorBlink": true,
+  "terminal.integrated.shell.linux": "/bin/bash",
+  "terminal.integrated.shell.osx": "/bin/zsh"
+}
+```
+
+## Git And Extensions
+
+```json
+{
+  "git.enabled": true,
+  "git.autofetch": true,
+  "git.confirmSync": true,
+  "extensions.autoUpdate": true,
+  "extensions.ignoreRecommendations": false
+}
+```
