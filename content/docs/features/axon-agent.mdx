@@ -13,12 +13,18 @@ Axon Agent is local-first and project-aware. It talks through `axon-core`, uses 
 The agent is designed to work from Axon's project state: Problems, Git, terminal sessions, file watching, language servers, and workspace roots. That is different from a generic chat box because the agent can be wired to the same facts the editor already knows.
 
 <Screenshot
-  src="/media/screenshots/axon-latest-17.png"
-  alt="Axon Agent terminal session"
-  caption="Axon Agent has a dedicated terminal identity while still living inside the same workspace shell and editor context."
+  src="/media/screenshots/axon-latest-16.png"
+  alt="Ask Axon panel open beside the active code editor"
+  caption="Ask Axon opens beside the active file with project problems and workspace context available to the conversation."
 />
 
 ## Terminal Command
+
+<Screenshot
+  src="/media/screenshots/axon-latest-17.png"
+  alt="Axon Agent interactive session running in the integrated terminal"
+  caption="The terminal agent shows the attached workspace, session identity, selected model, and local commands before the conversation begins."
+/>
 
 <CommandTable
   rows={[
@@ -39,6 +45,12 @@ Inside an interactive session, `/` opens the local command picker. Commands filt
 ## Guardrails
 
 Axon injects exact project facts when project context is attached and tells local models not to invent placeholder paths, counts, filenames, commands, URLs, emails, API names, or project facts.
+
+Interactive terminal sessions preserve conversation history as real user and assistant turns. Project-aware prompts can attach deterministic file tree, focused read, search, Git, and Problems context before a response begins.
+
+## Workspace-Safe Fixes
+
+`axon fix` reads the Problems snapshot exported by the open editor, sends exact diagnostics to the local agent, parses the proposed edits separately from normal chat text, and validates every path before writing inside the active workspace.
 
 ## Still Being Built
 

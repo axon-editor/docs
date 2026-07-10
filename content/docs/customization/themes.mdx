@@ -4,15 +4,24 @@ description: Customize Axon appearance.
 icon: Palette
 ---
 
+import { Screenshot } from '@/components/docs/shared';
+
 Axon includes a built-in dark theme with Catppuccin-inspired colors. You can customize colors, import fonts, or create your own themes.
 
-## Built-In Theme
+<Screenshot
+  src="/media/screenshots/axon-latest-09.png"
+  alt="Axon token inspector showing semantic scope and rendered theme color"
+  caption="The token inspector exposes TextMate scope, semantic classification, and the final rendered color for precise theme debugging."
+/>
 
-- Deep blue-gray editor background.
-- High contrast editor colors.
-- Catppuccin icon colors.
-- Monaspace Neon font for code.
-- Inter font for UI.
+## Built-In Themes
+
+- Axon dark themes with Catppuccin icon colors.
+- Ayu Dark, Ayu Light, and Ayu Mirage.
+- Monaco, workbench, and terminal colors derived from the active theme.
+- Monaspace Neon for code and Inter for the interface.
+
+Axon's `SyntaxTheme` layer maps semantic captures such as functions, methods, properties, types, tags, selectors, punctuation, and string variants onto Monaco token names. Capture lookup falls back from a specific child capture to its parent, so themes can remain consistent across languages without defining every possible token path.
 
 ## Changing Themes
 

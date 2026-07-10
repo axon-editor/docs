@@ -9,9 +9,9 @@ import { Screenshot } from '@/components/docs/shared';
 Axon includes a PTY-backed integrated terminal owned by the Go backend and rendered through xterm.js. You can run commands, use Git, start tools, and keep terminal sessions alive while the panel hides, the renderer reconnects, or the workbench changes state.
 
 <Screenshot
-  src="/media/screenshots/axon-screenshot-09.png"
-  alt="Axon integrated terminal"
-  caption="The terminal is treated as a first-class workspace surface with persistent sessions and editor-aware controls."
+  src="/media/screenshots/axon-latest-06.png"
+  alt="Axon workspace with the integrated terminal panel open"
+  caption="Terminal tabs share the workbench with the file tree and editor, keeping shell sessions attached to the active workspace."
 />
 
 ## Opening The Terminal
@@ -34,6 +34,9 @@ Axon includes a PTY-backed integrated terminal owned by the Go backend and rende
 - Persistent sessions across renderer reloads.
 - Scrollback replay when a terminal view reconnects.
 - Backpressure handling for long-running agent output.
+- Slow renderer clients reconnect from the last painted byte instead of losing queued output.
+- Small input bursts survive websocket reconnects.
+- Terminal profiles and panel activation are declared by the built-in terminal extension.
 
 ## Axon CLI
 

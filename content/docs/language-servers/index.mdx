@@ -9,10 +9,19 @@ import { DocCards, Screenshot } from '@/components/docs/shared';
 Axon uses language servers for real project intelligence. Monaco can tokenize and edit text, but the language server understands imports, dependencies, symbols, project configuration, diagnostics, rename, references, definitions, and code actions.
 
 <Screenshot
-  src="/media/screenshots/axon-latest-15.png"
-  alt="Axon TypeScript autocomplete suggestions"
-  caption="Project-aware completions depend on the opened root, package metadata, and a connected language server."
+  src="/media/screenshots/axon-latest-14.png"
+  alt="Axon editor showing language-aware hover information for a Go function"
+  caption="Language servers keep hover details, definitions, diagnostics, completion, references, and code actions connected to the active project."
 />
+
+## Editor Features
+
+- Completion, hover, diagnostics, references, rename, formatting, and code actions.
+- Go to definition for local, exported, imported, and external symbols.
+- Signature help and workspace configuration responses.
+- Installed package and export-aware completion for TypeScript and TSX projects.
+- TSX-aware React editing and HTML template completion from `!`.
+- Project-aware Problems that merge Monaco, language server, and project diagnostics.
 
 ## Supported Pages
 

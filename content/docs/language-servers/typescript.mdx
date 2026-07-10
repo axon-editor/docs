@@ -5,12 +5,11 @@ icon: Braces
 ---
 
 import { LanguageServerDoc } from '@/components/docs/language-server-doc';
-import { Screenshot } from '@/components/docs/shared';
 
 <LanguageServerDoc id="typescript" />
 
-<Screenshot
-  src="/media/screenshots/axon-latest-15.png"
-  alt="Axon TypeScript autocomplete suggestions"
-  caption="TypeScript completions appear at the cursor with project-aware suggestions when the workspace root, package metadata, and language server are connected."
-/>
+## Package-Aware Completion
+
+TypeScript and TSX completion includes exports from installed packages. Component and icon libraries can therefore appear as import candidates instead of limiting suggestions to symbols already present in the workspace.
+
+Axon also supports TSX-aware React editing, themed embedded HTML, signature help, and external-definition navigation that prefers source files when a package provides them.

@@ -18,6 +18,14 @@ Axon's editor is built for daily project work: open files, keep multiple panes a
 
 Files open into editor tabs. Tabs can be moved between panes, pinned, and closed with dirty-file prompts when unsaved changes exist.
 
+Restored tabs do not all mount Monaco, synchronize with language servers, and start watchers during first paint. Axon restores the visible editing surface first and activates deeper work as the relevant file becomes active.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-15.png"
+  alt="Axon buffer symbol picker listing functions in the active Go file"
+  caption="Buffer symbol search uses language intelligence to jump directly to functions and other declarations in the active file."
+/>
+
 ## Previews
 
 Markdown, images, videos, and HTML can open in preview surfaces. External links use the system browser, while local Markdown links stay inside Axon when the target file exists in the workspace.
@@ -31,6 +39,24 @@ Markdown, images, videos, and HTML can open in preview surfaces. External links 
 ## Find In File
 
 Use the editor find control for current-file search. Selected text seeds the query when opening find, and editing the find query does not steal the original editor cursor after a query already exists.
+
+## File Commands
+
+- Save As opens the native file picker and writes through the workspace capability boundary.
+- Open Recent reuses the normal workspace-opening flow instead of maintaining a separate partial path.
+- Workspace replace skips binary, generated, and oversized files, then writes matching text files atomically.
+- Language grammars load as lazy chunks through a shared tokenizer engine.
+- Semantic coloring, language-server synchronization, and React snapshots are coalesced away from the per-keystroke path.
+
+## Problems
+
+Diagnostics from connected language servers are collected into a workspace view where errors, warnings, information, and hints can be filtered before opening the affected file.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-13.png"
+  alt="Axon Problems view grouping diagnostics by file and severity"
+  caption="The Problems surface groups diagnostics by file and keeps severity counts visible across the whole workspace."
+/>
 
 ## Stability Rules
 
