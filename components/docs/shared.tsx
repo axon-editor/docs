@@ -53,9 +53,9 @@ export function DocCards({ items }: { items: CardItem[] }) {
           <StaggerItem key={item.href}>
             <Link
               href={item.href}
-              className="group block h-full rounded-lg border border-zinc-800 bg-zinc-950/80 p-5 shadow-sm shadow-black/40 transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/70"
+              className="group block h-full rounded-lg border border-white/[0.09] bg-[#070707] p-5 transition hover:-translate-y-0.5 hover:border-violet-400/30 hover:bg-[#0a0a0a]"
             >
-              <div className="mb-4 flex size-10 items-center justify-center rounded-md border border-zinc-800 bg-black text-zinc-300 transition group-hover:text-cyan-300">
+              <div className="mb-4 flex size-10 items-center justify-center rounded-md border border-white/10 bg-black text-zinc-400 transition group-hover:text-violet-300">
                 <Icon className="size-5" />
               </div>
               <h3 className="m-0 text-base font-semibold text-zinc-50">
@@ -82,7 +82,7 @@ export function Screenshot({
   caption: string;
 }) {
   return (
-    <figure className="not-prose my-8 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-xl shadow-black/50">
+    <figure className="not-prose my-8 overflow-hidden rounded-lg border border-white/10 bg-zinc-950">
       <Image
         src={src}
         alt={alt}
@@ -100,13 +100,13 @@ export function Screenshot({
 
 export function CommandTable({ rows }: { rows: [string, string][] }) {
   return (
-    <div className="not-prose my-8 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950/70">
+    <div className="not-prose my-8 overflow-hidden rounded-lg border border-white/10 bg-[#070707]">
       {rows.map(([command, description]) => (
         <div
           key={command}
           className="grid gap-3 border-b border-zinc-800 p-4 last:border-b-0 md:grid-cols-[16rem_1fr]"
         >
-          <code className="text-sm text-cyan-300">{command}</code>
+          <code className="text-sm text-violet-300">{command}</code>
           <p className="m-0 text-sm leading-6 text-zinc-400">{description}</p>
         </div>
       ))}
@@ -116,7 +116,7 @@ export function CommandTable({ rows }: { rows: [string, string][] }) {
 
 export function StepList({ steps }: { steps: string[] }) {
   return (
-    <div className="not-prose my-8 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950/70">
+    <div className="not-prose my-8 overflow-hidden rounded-lg border border-white/10 bg-[#070707]">
       {steps.map((step, index) => (
         <div
           key={step}

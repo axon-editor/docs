@@ -10,6 +10,25 @@ html {
 body {
   background: #000;
   color: #f4f4f5;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(139 92 246 / 0.35);
+  color: #fff;
+}
+
+.button-shine {
+  border: 1px solid rgb(255 255 255 / 0.15);
+}
+
+.feature-card {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgb(255 255 255 / 0.16);
 }
 
 :root,
@@ -45,14 +64,14 @@ body {
 }
 
 #nd-sidebar {
-  background: #000;
-  border-color: #27272a;
+  background: #050505;
+  border-color: rgb(255 255 255 / 0.08);
   color: #e4e4e7;
 }
 
 #nd-sidebar > div:first-child {
   border-bottom: 1px solid #18181b;
-  background: linear-gradient(180deg, #050505 0%, #000 100%);
+  background: #050505;
 }
 
 #nd-sidebar a[href="/"] {
@@ -89,13 +108,102 @@ body {
 }
 
 #nd-sidebar a[data-active="true"] {
-  background: #ffffff !important;
-  color: #000 !important;
+  background: rgb(139 92 246 / 0.12) !important;
+  color: #ddd6fe !important;
   font-weight: 600;
 }
 
 #nd-sidebar a[data-active="true"] svg {
-  color: #000;
+  color: #a78bfa;
+}
+
+#nd-docs-layout article {
+  --color-fd-primary: #a78bfa;
+}
+
+#nd-docs-layout main {
+  background: #000;
+}
+
+#nd-docs-layout article {
+  border-left: 1px solid rgb(255 255 255 / 0.04);
+  border-right: 1px solid rgb(255 255 255 / 0.04);
+}
+
+.docs-page-heading {
+  position: relative;
+  padding-top: 1.25rem;
+}
+
+.docs-page-heading::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 1px;
+  background: #8b5cf6;
+  content: '';
+}
+
+#nd-docs-layout article h1 {
+  letter-spacing: -0.04em;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.05;
+}
+
+#nd-docs-layout article h2,
+#nd-docs-layout article h3 {
+  letter-spacing: -0.025em;
+}
+
+#nd-docs-layout article pre {
+  border-color: rgb(255 255 255 / 0.1);
+  background: #070707;
+}
+
+#nd-docs-layout article :not(pre) > code {
+  border: 1px solid rgb(167 139 250 / 0.16);
+  background: rgb(139 92 246 / 0.08);
+  color: #c4b5fd;
+}
+
+#nd-docs-layout article blockquote {
+  border-left-color: #8b5cf6;
+  background: rgb(139 92 246 / 0.05);
+}
+
+#nd-docs-layout article table {
+  border-color: rgb(255 255 255 / 0.1);
+  background: #050505;
+}
+
+#nd-docs-layout article hr {
+  border-color: rgb(255 255 255 / 0.08);
+}
+
+#nd-toc {
+  border-color: rgb(255 255 255 / 0.08);
+}
+
+#nd-toc a {
+  color: #71717a;
+  transition: color 160ms ease;
+}
+
+#nd-toc a:hover,
+#nd-toc a[data-active='true'] {
+  color: #c4b5fd;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 #nd-sidebar [role="presentation"] [class*="mask-"] {

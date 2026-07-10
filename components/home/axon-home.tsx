@@ -1,20 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Bot,
   Braces,
-  CodeXml,
+  Check,
+  ChevronRight,
+  Code2,
   Command,
   FileText,
   GitBranch,
   Keyboard,
   Package,
-  PanelLeft,
   Search,
   Settings,
+  Sparkles,
   Terminal,
   Wrench,
   type LucideIcon,
@@ -25,310 +29,236 @@ type DocLink = {
   description: string;
   href: string;
   icon: LucideIcon;
+  accent: string;
 };
 
 const quickstart = [
-  {
-    title: "Install Axon",
-    href: "/docs/getting-started/installation",
-    description: "Pick the right release asset and understand platform notes.",
-  },
-  {
-    title: "Open a project",
-    href: "/docs/getting-started/first-project",
-    description:
-      "Start from the workspace root so Git, terminal, and LSP state line up.",
-  },
-  {
-    title: "Use Axon Agent",
-    href: "/docs/features/axon-agent",
-    description:
-      "Run project-aware terminal sessions, slash commands, and commit drafts.",
-  },
+  { title: "Install Axon", href: "/docs/getting-started/installation" },
+  { title: "Open your first project", href: "/docs/getting-started/first-project" },
+  { title: "Work with Axon Agent", href: "/docs/features/axon-agent" },
 ];
 
 const explore: DocLink[] = [
   {
     title: "Editor",
-    description:
-      "Tabs, panes, previews, dirty-state protection, hover, and find-in-file behavior.",
+    description: "Tabs, panes, previews, hover, and workspace-native editing.",
     href: "/docs/features/editor",
-    icon: CodeXml,
+    icon: Code2,
+    accent: "text-violet-300",
+  },
+  {
+    title: "Axon Agent",
+    description: "Project-aware terminal sessions, commands, and commit drafts.",
+    href: "/docs/features/axon-agent",
+    icon: Bot,
+    accent: "text-violet-300",
   },
   {
     title: "Terminal",
-    description:
-      "PTY-backed terminal tabs, replay, reconnect behavior, and CLI usage.",
+    description: "PTY-backed tabs, replay, reconnect behavior, and CLI usage.",
     href: "/docs/features/terminal",
     icon: Terminal,
+    accent: "text-emerald-300",
   },
   {
     title: "Search",
-    description:
-      "Workspace search, quick find, result navigation, and default exclusions.",
+    description: "Workspace search, quick find, results, and smart exclusions.",
     href: "/docs/features/search",
     icon: Search,
+    accent: "text-blue-300",
   },
   {
     title: "Git",
-    description:
-      "Status, diffs, history, branch context, and agent-assisted commits.",
+    description: "Status, diffs, history, branches, and assisted commits.",
     href: "/docs/features/git",
     icon: GitBranch,
+    accent: "text-orange-300",
   },
   {
-    title: "Language Servers",
-    description:
-      "TypeScript, Python, Go, Rust, Tailwind, JSON, YAML, Docker, and more.",
+    title: "Language servers",
+    description: "TypeScript, Python, Go, Rust, Tailwind, Docker, and more.",
     href: "/docs/language-servers",
     icon: Braces,
-  },
-  {
-    title: "Customization",
-    description:
-      "Settings, themes, keybindings, and extension package structure.",
-    href: "/docs/customization/settings",
-    icon: Settings,
+    accent: "text-pink-300",
   },
 ];
 
-const references: DocLink[] = [
-  {
-    title: "Extensions",
-    description:
-      "Manifest schema, contribution types, activation, and extension boundaries.",
-    href: "/docs/extensions",
-    icon: Package,
-  },
-  {
-    title: "Updates",
-    description:
-      "GitHub Releases, platform assets, unsigned macOS builds, and update flow.",
-    href: "/docs/updates",
-    icon: FileText,
-  },
-  {
-    title: "Build from source",
-    description:
-      "Run the Go backend, Electron app, production builds, and language-server bundles.",
-    href: "/docs/development/building",
-    icon: Wrench,
-  },
+const references = [
+  { title: "Customization", href: "/docs/customization/settings", icon: Settings },
+  { title: "Extensions", href: "/docs/extensions", icon: Package },
+  { title: "Keybindings", href: "/docs/customization/keybindings", icon: Keyboard },
+  { title: "Build from source", href: "/docs/development/building", icon: Wrench },
+  { title: "Release updates", href: "/docs/updates", icon: FileText },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
+const heroMessages = [
+  "Learn every surface.",
+  "Master your workflow.",
+  "Build with context.",
+  "Move at your pace.",
+  "Make Axon yours.",
 ];
 
 export function AxonHome() {
+  const reduceMotion = useReducedMotion();
+  const [messageIndex, setMessageIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const interval = window.setInterval(() => {
+      setMessageIndex((current) => (current + 1) % heroMessages.length);
+    }, 4200);
+
+    return () => window.clearInterval(interval);
+  }, [reduceMotion]);
+
   return (
-    <main className="min-h-screen bg-black text-zinc-100">
-      <section className="border-b border-zinc-900 px-6 py-20 sm:py-24 lg:px-8">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_420px] lg:items-start">
+    <main className="relative min-h-screen overflow-hidden bg-black text-zinc-100">
+      <div className="pointer-events-none absolute left-1/2 top-[-24rem] h-[48rem] w-[60rem] -translate-x-1/2 rounded-full bg-violet-600/[0.12] blur-[140px]" />
+
+      <section className="relative px-5 pb-24 pt-20 sm:px-8 sm:pt-28 lg:pb-32 lg:pt-36">
+        <div className="mx-auto max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease }}
+            className="mx-auto max-w-4xl text-center"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-xs font-medium text-zinc-400">
-              <PanelLeft className="size-3.5 text-cyan-300" />
-              Axon documentation
-            </div>
-
-            <h1 className="max-w-3xl text-5xl font-semibold leading-tight tracking-normal text-white sm:text-6xl">
-              Build with Axon.
+            <Link
+              href="/docs/updates"
+              className="group mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-zinc-400 backdrop-blur-xl transition hover:border-white/20 hover:text-zinc-200"
+            >
+              <Sparkles className="size-3.5 text-violet-400" />
+              Documentation for the latest Axon release
+              <ChevronRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <h1 className="text-balance text-5xl font-semibold tracking-[-0.055em] text-white sm:text-7xl lg:text-[5.5rem] lg:leading-[0.98]">
+              Everything about Axon.
+              <span className="relative mt-1 block h-[1.08em] overflow-hidden text-zinc-400">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={heroMessages[messageIndex]}
+                    initial={reduceMotion ? false : { opacity: 0, y: "55%", filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={reduceMotion ? undefined : { opacity: 0, y: "-45%", filter: "blur(8px)" }}
+                    transition={{ duration: 0.9, ease }}
+                    className="absolute inset-x-0 top-0 block"
+                  >
+                    {heroMessages[messageIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
-              Axon is a desktop code editor for workspace-aware development:
-              files, panes, terminals, Git, language servers, settings,
-              extensions, and a local project-aware agent.
+            <p className="mx-auto mt-7 max-w-2xl text-balance text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
+              Learn the editor, master its workspace tools, and extend your
+              development environment, from your first project to a custom setup.
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/docs"
-                className="inline-flex items-center gap-2 rounded-md border border-cyan-400/70 bg-cyan-950/30 px-4 py-2.5 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300 hover:bg-cyan-900/35"
-              >
-                Start reading
-                <ArrowRight className="size-4" />
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link href="/docs" className="button-shine inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-black transition hover:bg-zinc-200">
+                Get started <ArrowRight className="size-4" />
               </Link>
-              <Link
-                href="https://github.com/GordenArcher/axon"
-                className="inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm font-semibold text-zinc-100 transition hover:border-zinc-700 hover:bg-zinc-900"
-              >
-                <Command className="size-4" />
-                GitHub
+              <Link href="https://github.com/GordenArcher/axon" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-medium text-zinc-200 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.08]">
+                <GitBranch className="size-4" /> View on GitHub
               </Link>
             </div>
           </motion.div>
 
-          <motion.aside
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.45,
-              delay: 0.08,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="rounded-lg border border-zinc-800 bg-zinc-950/80 shadow-2xl shadow-black/40"
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.16, ease }}
+            className="relative mx-auto mt-16 max-w-5xl sm:mt-20"
           >
-            <div className="border-b border-zinc-800 px-4 py-3">
-              <div className="flex items-center gap-2 text-sm font-medium text-zinc-300">
-                <Terminal className="size-4 text-cyan-300" />
-                Quick commands
+            <div className="absolute left-1/2 top-0 h-40 w-2/3 -translate-x-1/2 bg-violet-500/15 blur-[90px]" />
+            <div className="relative overflow-hidden rounded-xl border border-white/15 bg-zinc-950 p-1.5">
+              <div className="flex h-9 items-center gap-1.5 border-b border-white/[0.07] px-3">
+                <span className="size-2.5 rounded-full bg-zinc-700" />
+                <span className="size-2.5 rounded-full bg-zinc-700" />
+                <span className="size-2.5 rounded-full bg-zinc-700" />
+                <span className="ml-auto font-mono text-[10px] text-zinc-600">AXON / WORKSPACE</span>
               </div>
+              <Image src="/media/screenshots/axon-latest-14.png" alt="The Axon editor showing a development workspace" width={1920} height={1080} priority className="h-auto w-full rounded-b-lg opacity-90" />
             </div>
-            <div className="space-y-5 p-5 font-mono text-sm">
-              <CommandLine
-                command="axon ."
-                description="Open the current directory in Axon."
-              />
-              <CommandLine
-                command="axon"
-                description="Start a workspace-scoped Agent session."
-              />
-              <CommandLine
-                command="axon commit"
-                description="Draft a commit from staged changes."
-              />
-            </div>
-          </motion.aside>
+          </motion.div>
         </div>
       </section>
 
-      <section className="border-b border-zinc-900 px-6 py-12 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            eyebrow="Quickstart"
-            title="Get Axon set up in a project."
-            description="Start with the minimum path that makes the editor useful: install, open a real workspace root, then attach the agent and project tooling."
-          />
-          <div className="mt-6 grid gap-3 md:grid-cols-3">
+      <section className="relative border-y border-white/[0.07] bg-zinc-950/30 px-5 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <SectionHeader eyebrow="Start here" title="From zero to flow in three steps." description="A focused path through installation, workspace setup, and the tools that make Axon feel fast." />
+          <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
             {quickstart.map((item, index) => (
-              <NumberedCard key={item.href} index={index + 1} {...item} />
+              <motion.div key={item.href} initial={reduceMotion ? false : { opacity: 0, x: 16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.45, delay: index * 0.06, ease }}>
+                <Link href={item.href} className="group flex items-center gap-5 py-5">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-mono text-xs text-zinc-500 transition group-hover:border-violet-400/40 group-hover:text-violet-300">0{index + 1}</span>
+                  <span className="font-medium text-zinc-200 transition group-hover:text-white">{item.title}</span>
+                  <ArrowRight className="ml-auto size-4 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-white" />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b border-zinc-900 px-6 py-12 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            eyebrow="Explore"
-            title="Learn the editor surfaces."
-            description="Each page focuses on a real Axon workflow instead of marketing copy."
-          />
-          <LinkGrid items={explore} />
+      <section className="relative px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader eyebrow="Explore the platform" title="Built for the whole development loop." description="Detailed guides for every part of Axon, with real workflows and the reasoning behind them." />
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {explore.map((item, index) => <FeatureCard key={item.href} item={item} index={index} reduceMotion={Boolean(reduceMotion)} />)}
+          </div>
         </div>
       </section>
 
-      <section className="px-6 py-12 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            eyebrow="Reference"
-            title="Customize, extend, and ship."
-            description="Use these pages when you are configuring Axon itself or working on the editor."
-          />
-          <LinkGrid items={references} compact />
+      <section className="border-t border-white/[0.07] px-5 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-2xl border border-white/10 bg-[#050505] lg:grid-cols-2">
+          <div className="p-7 sm:p-10 lg:p-12">
+            <div className="mb-6 flex size-11 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-500/10 text-violet-300"><Command className="size-5" /></div>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">The shortest path to productive.</h2>
+            <p className="mt-4 max-w-lg text-sm leading-7 text-zinc-400">Open the current directory, keep your tools scoped to the workspace, and let Axon carry project context across the editor.</p>
+            <div className="mt-7 space-y-3 text-sm text-zinc-300">
+              {["Workspace-aware from the first command", "Integrated Git, terminal, and language tooling", "Local agent sessions that understand the project"].map((item) => <div key={item} className="flex items-center gap-3"><Check className="size-4 text-emerald-400" />{item}</div>)}
+            </div>
+          </div>
+          <div className="border-t border-white/10 bg-black/40 p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+            <div className="overflow-hidden rounded-xl border border-white/10 bg-[#070707]">
+              <div className="flex items-center gap-2 border-b border-white/[0.08] px-4 py-3 text-xs text-zinc-500"><Terminal className="size-3.5" /> terminal</div>
+              <div className="space-y-5 p-5 font-mono text-sm">
+                <CommandLine command="axon ." result="Opening workspace in Axon…" delay={0} />
+                <CommandLine command="axon" result="Agent ready · workspace attached" delay={0.12} />
+                <CommandLine command="axon commit" result="Drafting from staged changes…" delay={0.24} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.07] px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-7xl">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-600">Reference &amp; resources</p>
+          <div className="grid border-l border-t border-white/[0.08] sm:grid-cols-2 lg:grid-cols-5">
+            {references.map(({ title, href, icon: Icon }) => (
+              <Link key={href} href={href} className="group flex items-center gap-3 border-b border-r border-white/[0.08] p-4 text-sm text-zinc-400 transition hover:bg-white/[0.04] hover:text-white">
+                <Icon className="size-4 text-zinc-600 transition group-hover:text-violet-300" />{title}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </main>
   );
 }
 
-function CommandLine({
-  command,
-  description,
-}: {
-  command: string;
-  description: string;
-}) {
-  return (
-    <div>
-      <div className="flex items-center gap-2 text-zinc-100">
-        <span className="text-cyan-300">$</span>
-        <span>{command}</span>
-      </div>
-      <p className="mt-1 pl-4 text-xs leading-5 text-zinc-500">{description}</p>
-    </div>
-  );
+function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+  return <div className="max-w-2xl"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-400">{eyebrow}</p><h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">{title}</h2><p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">{description}</p></div>;
 }
 
-function SectionHeader({
-  eyebrow,
-  title,
-  description,
-}: {
-  eyebrow: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div>
-      <p className="text-sm font-medium text-cyan-300">{eyebrow}</p>
-      <h2 className="mt-2 text-2xl font-semibold text-white">{title}</h2>
-      <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
-        {description}
-      </p>
-    </div>
-  );
+function FeatureCard({ item, index, reduceMotion }: { item: DocLink; index: number; reduceMotion: boolean }) {
+  const Icon = item.icon;
+  return <motion.div initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.45, delay: (index % 3) * 0.06, ease }}><Link href={item.href} className="feature-card group relative block h-full overflow-hidden rounded-xl border border-white/[0.09] bg-[#070707] p-6"><div className={`relative flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] ${item.accent}`}><Icon className="size-4.5" /></div><div className="relative mt-8 flex items-start justify-between gap-4"><div><h3 className="font-semibold text-zinc-100">{item.title}</h3><p className="mt-2 text-sm leading-6 text-zinc-500 transition group-hover:text-zinc-400">{item.description}</p></div><ArrowRight className="mt-1 size-4 shrink-0 -translate-x-1 text-zinc-700 opacity-0 transition group-hover:translate-x-0 group-hover:text-zinc-300 group-hover:opacity-100" /></div></Link></motion.div>;
 }
 
-function NumberedCard({
-  index,
-  title,
-  description,
-  href,
-}: {
-  index: number;
-  title: string;
-  description: string;
-  href: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group block rounded-lg border border-zinc-800 bg-zinc-950/70 p-5 transition hover:border-zinc-700 hover:bg-zinc-900/70"
-    >
-      <span className="font-mono text-xs text-zinc-500">0{index}</span>
-      <h3 className="mt-4 text-base font-semibold text-white">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-zinc-400">{description}</p>
-      <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-cyan-300">
-        Open
-        <ArrowRight className="size-3.5 transition group-hover:translate-x-0.5" />
-      </div>
-    </Link>
-  );
-}
-
-function LinkGrid({
-  items,
-  compact = false,
-}: {
-  items: DocLink[];
-  compact?: boolean;
-}) {
-  return (
-    <div
-      className={`mt-6 grid gap-3 ${compact ? "md:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-3"}`}
-    >
-      {items.map((item) => {
-        const Icon = item.icon;
-
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="group flex gap-4 rounded-lg border border-zinc-800 bg-zinc-950/60 p-5 transition hover:border-zinc-700 hover:bg-zinc-900/70"
-          >
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-md border border-zinc-800 bg-black text-zinc-300 group-hover:text-cyan-300">
-              <Icon className="size-4.5" />
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-              <p className="mt-1 text-sm leading-6 text-zinc-400">
-                {item.description}
-              </p>
-            </div>
-          </Link>
-        );
-      })}
-    </div>
-  );
+function CommandLine({ command, result, delay }: { command: string; result: string; delay: number }) {
+  return <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay, duration: 0.4 }}><div className="text-zinc-200"><span className="mr-2 text-violet-400">›</span>{command}</div><p className="mt-1 pl-4 text-xs text-zinc-600">{result}</p></motion.div>;
 }

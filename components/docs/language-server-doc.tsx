@@ -387,9 +387,9 @@ export function LanguageServerDoc({ id }: { id: keyof typeof languageServers }) 
 
   return (
     <div className="not-prose my-8 space-y-8">
-      <div className="rounded-lg border border-zinc-800 bg-zinc-950/80 p-5 shadow-sm shadow-black/40">
+      <div className="rounded-lg border border-white/10 bg-[#070707] p-5">
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-md bg-cyan-950/40 text-cyan-300">
+          <div className="flex size-10 items-center justify-center rounded-md bg-violet-500/10 text-violet-300">
             <ServerCog className="size-5" />
           </div>
           <div>
@@ -435,7 +435,7 @@ function ListBlock({
   return (
     <section>
       <h2 className="mb-3 flex items-center gap-2 text-base font-semibold text-zinc-50">
-        <Icon className="size-5 text-cyan-300" />
+        <Icon className="size-5 text-violet-300" />
         {title}
       </h2>
       <div className="grid gap-3">
