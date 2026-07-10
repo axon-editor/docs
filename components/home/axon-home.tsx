@@ -34,7 +34,10 @@ type DocLink = {
 
 const quickstart = [
   { title: "Install Axon", href: "/docs/getting-started/installation" },
-  { title: "Open your first project", href: "/docs/getting-started/first-project" },
+  {
+    title: "Open your first project",
+    href: "/docs/getting-started/first-project",
+  },
   { title: "Work with Axon Agent", href: "/docs/features/axon-agent" },
 ];
 
@@ -48,7 +51,8 @@ const explore: DocLink[] = [
   },
   {
     title: "Axon Agent",
-    description: "Project-aware terminal sessions, commands, and commit drafts.",
+    description:
+      "Project-aware terminal sessions, commands, and commit drafts.",
     href: "/docs/features/axon-agent",
     icon: Bot,
     accent: "text-violet-300",
@@ -84,10 +88,22 @@ const explore: DocLink[] = [
 ];
 
 const references = [
-  { title: "Customization", href: "/docs/customization/settings", icon: Settings },
+  {
+    title: "Customization",
+    href: "/docs/customization/settings",
+    icon: Settings,
+  },
   { title: "Extensions", href: "/docs/extensions", icon: Package },
-  { title: "Keybindings", href: "/docs/customization/keybindings", icon: Keyboard },
-  { title: "Build from source", href: "/docs/development/building", icon: Wrench },
+  {
+    title: "Keybindings",
+    href: "/docs/customization/keybindings",
+    icon: Keyboard,
+  },
+  {
+    title: "Build from source",
+    href: "/docs/development/building",
+    icon: Wrench,
+  },
   { title: "Release updates", href: "/docs/updates", icon: FileText },
 ];
 
@@ -140,9 +156,17 @@ export function AxonHome() {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={heroMessages[messageIndex]}
-                    initial={reduceMotion ? false : { opacity: 0, y: "55%", filter: "blur(8px)" }}
+                    initial={
+                      reduceMotion
+                        ? false
+                        : { opacity: 0, y: "55%", filter: "blur(8px)" }
+                    }
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    exit={reduceMotion ? undefined : { opacity: 0, y: "-45%", filter: "blur(8px)" }}
+                    exit={
+                      reduceMotion
+                        ? undefined
+                        : { opacity: 0, y: "-45%", filter: "blur(8px)" }
+                    }
                     transition={{ duration: 0.9, ease }}
                     className="absolute inset-x-0 top-0 block"
                   >
@@ -153,13 +177,20 @@ export function AxonHome() {
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-balance text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
               Learn the editor, master its workspace tools, and extend your
-              development environment, from your first project to a custom setup.
+              development environment, from your first project to a custom
+              setup.
             </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/docs" className="button-shine inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-black transition hover:bg-zinc-200">
+              <Link
+                href="/docs"
+                className="button-shine inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-black transition hover:bg-zinc-200"
+              >
                 Get started <ArrowRight className="size-4" />
               </Link>
-              <Link href="https://github.com/GordenArcher/axon" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-medium text-zinc-200 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.08]">
+              <Link
+                href="https://github.com/axon-editor/axon"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-medium text-zinc-200 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.08]"
+              >
                 <GitBranch className="size-4" /> View on GitHub
               </Link>
             </div>
@@ -177,9 +208,18 @@ export function AxonHome() {
                 <span className="size-2.5 rounded-full bg-zinc-700" />
                 <span className="size-2.5 rounded-full bg-zinc-700" />
                 <span className="size-2.5 rounded-full bg-zinc-700" />
-                <span className="ml-auto font-mono text-[10px] text-zinc-600">AXON / WORKSPACE</span>
+                <span className="ml-auto font-mono text-[10px] text-zinc-600">
+                  AXON / WORKSPACE
+                </span>
               </div>
-              <Image src="/media/screenshots/axon-latest-14.png" alt="The Axon editor showing a development workspace" width={1920} height={1080} priority className="h-auto w-full rounded-b-lg opacity-90" />
+              <Image
+                src="/media/screenshots/axon-latest-14.png"
+                alt="The Axon editor showing a development workspace"
+                width={1920}
+                height={1080}
+                priority
+                className="h-auto w-full rounded-b-lg opacity-90"
+              />
             </div>
           </motion.div>
         </div>
@@ -187,13 +227,30 @@ export function AxonHome() {
 
       <section className="relative border-y border-white/[0.07] bg-zinc-950/30 px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
-          <SectionHeader eyebrow="Start here" title="From zero to flow in three steps." description="A focused path through installation, workspace setup, and the tools that make Axon feel fast." />
+          <SectionHeader
+            eyebrow="Start here"
+            title="From zero to flow in three steps."
+            description="A focused path through installation, workspace setup, and the tools that make Axon feel fast."
+          />
           <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
             {quickstart.map((item, index) => (
-              <motion.div key={item.href} initial={reduceMotion ? false : { opacity: 0, x: 16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.45, delay: index * 0.06, ease }}>
-                <Link href={item.href} className="group flex items-center gap-5 py-5">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-mono text-xs text-zinc-500 transition group-hover:border-violet-400/40 group-hover:text-violet-300">0{index + 1}</span>
-                  <span className="font-medium text-zinc-200 transition group-hover:text-white">{item.title}</span>
+              <motion.div
+                key={item.href}
+                initial={reduceMotion ? false : { opacity: 0, x: 16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.45, delay: index * 0.06, ease }}
+              >
+                <Link
+                  href={item.href}
+                  className="group flex items-center gap-5 py-5"
+                >
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-mono text-xs text-zinc-500 transition group-hover:border-violet-400/40 group-hover:text-violet-300">
+                    0{index + 1}
+                  </span>
+                  <span className="font-medium text-zinc-200 transition group-hover:text-white">
+                    {item.title}
+                  </span>
                   <ArrowRight className="ml-auto size-4 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-white" />
                 </Link>
               </motion.div>
@@ -204,9 +261,20 @@ export function AxonHome() {
 
       <section className="relative px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionHeader eyebrow="Explore the platform" title="Built for the whole development loop." description="Detailed guides for every part of Axon, with real workflows and the reasoning behind them." />
+          <SectionHeader
+            eyebrow="Explore the platform"
+            title="Built for the whole development loop."
+            description="Detailed guides for every part of Axon, with real workflows and the reasoning behind them."
+          />
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {explore.map((item, index) => <FeatureCard key={item.href} item={item} index={index} reduceMotion={Boolean(reduceMotion)} />)}
+            {explore.map((item, index) => (
+              <FeatureCard
+                key={item.href}
+                item={item}
+                index={index}
+                reduceMotion={Boolean(reduceMotion)}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -214,20 +282,50 @@ export function AxonHome() {
       <section className="border-t border-white/[0.07] px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl overflow-hidden rounded-2xl border border-white/10 bg-[#050505] lg:grid-cols-2">
           <div className="p-7 sm:p-10 lg:p-12">
-            <div className="mb-6 flex size-11 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-500/10 text-violet-300"><Command className="size-5" /></div>
-            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">The shortest path to productive.</h2>
-            <p className="mt-4 max-w-lg text-sm leading-7 text-zinc-400">Open the current directory, keep your tools scoped to the workspace, and let Axon carry project context across the editor.</p>
+            <div className="mb-6 flex size-11 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-500/10 text-violet-300">
+              <Command className="size-5" />
+            </div>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              The shortest path to productive.
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-7 text-zinc-400">
+              Open the current directory, keep your tools scoped to the
+              workspace, and let Axon carry project context across the editor.
+            </p>
             <div className="mt-7 space-y-3 text-sm text-zinc-300">
-              {["Workspace-aware from the first command", "Integrated Git, terminal, and language tooling", "Local agent sessions that understand the project"].map((item) => <div key={item} className="flex items-center gap-3"><Check className="size-4 text-emerald-400" />{item}</div>)}
+              {[
+                "Workspace-aware from the first command",
+                "Integrated Git, terminal, and language tooling",
+                "Local agent sessions that understand the project",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <Check className="size-4 text-emerald-400" />
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
           <div className="border-t border-white/10 bg-black/40 p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
             <div className="overflow-hidden rounded-xl border border-white/10 bg-[#070707]">
-              <div className="flex items-center gap-2 border-b border-white/[0.08] px-4 py-3 text-xs text-zinc-500"><Terminal className="size-3.5" /> terminal</div>
+              <div className="flex items-center gap-2 border-b border-white/[0.08] px-4 py-3 text-xs text-zinc-500">
+                <Terminal className="size-3.5" /> terminal
+              </div>
               <div className="space-y-5 p-5 font-mono text-sm">
-                <CommandLine command="axon ." result="Opening workspace in Axon…" delay={0} />
-                <CommandLine command="axon" result="Agent ready · workspace attached" delay={0.12} />
-                <CommandLine command="axon commit" result="Drafting from staged changes…" delay={0.24} />
+                <CommandLine
+                  command="axon ."
+                  result="Opening workspace in Axon…"
+                  delay={0}
+                />
+                <CommandLine
+                  command="axon"
+                  result="Agent ready · workspace attached"
+                  delay={0.12}
+                />
+                <CommandLine
+                  command="axon commit"
+                  result="Drafting from staged changes…"
+                  delay={0.24}
+                />
               </div>
             </div>
           </div>
@@ -236,11 +334,18 @@ export function AxonHome() {
 
       <section className="border-t border-white/[0.07] px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-600">Reference &amp; resources</p>
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-600">
+            Reference &amp; resources
+          </p>
           <div className="grid border-l border-t border-white/[0.08] sm:grid-cols-2 lg:grid-cols-5">
             {references.map(({ title, href, icon: Icon }) => (
-              <Link key={href} href={href} className="group flex items-center gap-3 border-b border-r border-white/[0.08] p-4 text-sm text-zinc-400 transition hover:bg-white/[0.04] hover:text-white">
-                <Icon className="size-4 text-zinc-600 transition group-hover:text-violet-300" />{title}
+              <Link
+                key={href}
+                href={href}
+                className="group flex items-center gap-3 border-b border-r border-white/[0.08] p-4 text-sm text-zinc-400 transition hover:bg-white/[0.04] hover:text-white"
+              >
+                <Icon className="size-4 text-zinc-600 transition group-hover:text-violet-300" />
+                {title}
               </Link>
             ))}
           </div>
@@ -250,15 +355,91 @@ export function AxonHome() {
   );
 }
 
-function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
-  return <div className="max-w-2xl"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-400">{eyebrow}</p><h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">{title}</h2><p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">{description}</p></div>;
+function SectionHeader({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="max-w-2xl">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-400">
+        {eyebrow}
+      </p>
+      <h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
+        {title}
+      </h2>
+      <p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">
+        {description}
+      </p>
+    </div>
+  );
 }
 
-function FeatureCard({ item, index, reduceMotion }: { item: DocLink; index: number; reduceMotion: boolean }) {
+function FeatureCard({
+  item,
+  index,
+  reduceMotion,
+}: {
+  item: DocLink;
+  index: number;
+  reduceMotion: boolean;
+}) {
   const Icon = item.icon;
-  return <motion.div initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.45, delay: (index % 3) * 0.06, ease }}><Link href={item.href} className="feature-card group relative block h-full overflow-hidden rounded-xl border border-white/[0.09] bg-[#070707] p-6"><div className={`relative flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] ${item.accent}`}><Icon className="size-4.5" /></div><div className="relative mt-8 flex items-start justify-between gap-4"><div><h3 className="font-semibold text-zinc-100">{item.title}</h3><p className="mt-2 text-sm leading-6 text-zinc-500 transition group-hover:text-zinc-400">{item.description}</p></div><ArrowRight className="mt-1 size-4 shrink-0 -translate-x-1 text-zinc-700 opacity-0 transition group-hover:translate-x-0 group-hover:text-zinc-300 group-hover:opacity-100" /></div></Link></motion.div>;
+  return (
+    <motion.div
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.45, delay: (index % 3) * 0.06, ease }}
+    >
+      <Link
+        href={item.href}
+        className="feature-card group relative block h-full overflow-hidden rounded-xl border border-white/[0.09] bg-[#070707] p-6"
+      >
+        <div
+          className={`relative flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] ${item.accent}`}
+        >
+          <Icon className="size-4.5" />
+        </div>
+        <div className="relative mt-8 flex items-start justify-between gap-4">
+          <div>
+            <h3 className="font-semibold text-zinc-100">{item.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-zinc-500 transition group-hover:text-zinc-400">
+              {item.description}
+            </p>
+          </div>
+          <ArrowRight className="mt-1 size-4 shrink-0 -translate-x-1 text-zinc-700 opacity-0 transition group-hover:translate-x-0 group-hover:text-zinc-300 group-hover:opacity-100" />
+        </div>
+      </Link>
+    </motion.div>
+  );
 }
 
-function CommandLine({ command, result, delay }: { command: string; result: string; delay: number }) {
-  return <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay, duration: 0.4 }}><div className="text-zinc-200"><span className="mr-2 text-violet-400">›</span>{command}</div><p className="mt-1 pl-4 text-xs text-zinc-600">{result}</p></motion.div>;
+function CommandLine({
+  command,
+  result,
+  delay,
+}: {
+  command: string;
+  result: string;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.4 }}
+    >
+      <div className="text-zinc-200">
+        <span className="mr-2 text-violet-400">›</span>
+        {command}
+      </div>
+      <p className="mt-1 pl-4 text-xs text-zinc-600">{result}</p>
+    </motion.div>
+  );
 }
