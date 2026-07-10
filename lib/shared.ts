@@ -5,6 +5,6 @@ export const docsContentRoute = "/llms.mdx/docs";
 
 export const gitConfig = {
   user: "axon-editor",
-  repo: "axon",
+  repo: "docs",
   branch: "main",
 };
