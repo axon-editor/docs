@@ -1,0 +1,31 @@
+---
+title: Test Explorer
+description: Discover, run, and inspect project tests inside Axon.
+icon: FlaskConical
+---
+
+import { Screenshot } from '@/components/docs/shared';
+
+Axon includes a native testing surface so test discovery and results remain part of the active project instead of becoming detached terminal output.
+
+<Screenshot
+  src="/media/screenshots/axon-latest-19.png"
+  alt="Axon Test Explorer showing discovered npm and Go test targets"
+  caption="Test Explorer groups project scripts and Go packages, tracks run status, and keeps the selected target output inside the active workspace."
+/>
+
+## Current Capabilities
+
+- Discover tests through registered test providers.
+- Run every discovered test or an individual target.
+- Stream test output while a run is active.
+- Show completed results inside the editor.
+- Keep test processes and results scoped to the current workspace.
+
+## Workbench Integration
+
+Testing is registered as a built-in extension with explicit command and view activation events. Toolbar actions, command palette entries, and sidebar navigation therefore enter the same activation lifecycle before opening the Test Explorer.
+
+## Planned Depth
+
+Inline failure feedback, direct navigation to failing locations, coverage visualization, and test debugging are still being developed. These are not shipped capabilities yet.

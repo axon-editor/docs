@@ -1,0 +1,28 @@
+---
+title: Workspaces
+description: Project roots, multi-root foundations, file watching, and window behavior.
+icon: Folders
+---
+
+Axon treats the workspace root as shared context for files, search, Git, terminals, language servers, tests, Problems, and Axon Agent. Opening the directory that owns project metadata gives every surface the same view of the project.
+
+## Multi-Root Foundation
+
+The workbench has a multi-root foundation that moves project-aware features beyond one global folder path. Each root can own its file tree, diagnostics, repository state, terminal working directory, language server session, tests, and agent context.
+
+Some deeper per-root flows are still being completed. The foundation exists, but every feature should not yet be assumed to have full multi-root behavior.
+
+## External File Changes
+
+Workspace watchers use native filesystem events by default. Files added, changed, renamed, or removed by Finder, another editor, a build tool, or a terminal command can update the Axon file tree without polling the whole project.
+
+Polling is available only as a debugging option through `AXON_WATCH_USE_POLLING=1`.
+
+## Opening Projects From The CLI
+
+```bash
+axon .
+axon /path/to/project
+```
+
+When Axon is already running, a CLI folder request opens in a new managed Electron window instead of replacing the workspace in the current editor session.
