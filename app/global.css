@@ -4,12 +4,12 @@
 
 html {
   scrollbar-gutter: stable;
-  background: #000;
+  background: var(--color-fd-background);
 }
 
 body {
-  background: #000;
-  color: #f4f4f5;
+  background: var(--color-fd-background);
+  color: var(--color-fd-foreground);
   text-rendering: optimizeLegibility;
 }
 
@@ -18,21 +18,22 @@ body {
   color: #fff;
 }
 
-.button-shine {
-  border: 1px solid rgb(255 255 255 / 0.15);
+.light {
+  --axon-docs-surface: #ffffff;
+  --axon-sidebar: #fafafa;
+  --axon-sidebar-header: #ffffff;
+  --axon-control: #f4f4f5;
+  --axon-control-hover: #e4e4e7;
+  --axon-code-surface: #f4f4f5;
 }
 
-.feature-card {
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
-  border-color: rgb(255 255 255 / 0.16);
-}
-
-:root,
 .dark {
+  --axon-docs-surface: #000000;
+  --axon-sidebar: #030303;
+  --axon-sidebar-header: #030303;
+  --axon-control: #080808;
+  --axon-control-hover: #0a0a0a;
+  --axon-code-surface: #070707;
   --color-fd-background: #000;
   --color-fd-foreground: #f4f4f5;
   --color-fd-card: #050505;
@@ -54,7 +55,12 @@ body {
 #nd-docs-layout,
 #nd-docs-layout main,
 #nd-docs-layout article {
-  background: #000;
+  background: var(--axon-docs-surface, var(--color-fd-background));
+}
+
+#nd-docs-layout,
+#nd-docs-layout [data-sidebar-placeholder] {
+  --fd-sidebar-width: 232px !important;
 }
 
 #nd-subnav {
@@ -64,14 +70,17 @@ body {
 }
 
 #nd-sidebar {
-  background: #050505;
+  position: relative;
+  background: var(--axon-sidebar, var(--color-fd-card));
   border-color: rgb(255 255 255 / 0.08);
   color: #e4e4e7;
 }
 
 #nd-sidebar > div:first-child {
-  border-bottom: 1px solid #18181b;
-  background: #050505;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  background: var(--axon-sidebar-header, var(--color-fd-background));
 }
 
 #nd-sidebar a[href="/"] {
@@ -79,36 +88,42 @@ body {
 }
 
 #nd-sidebar [data-search-full] {
-  border-color: #27272a;
-  background: #09090b;
-  color: #a1a1aa;
+  height: 2.5rem;
+  border-color: rgb(255 255 255 / 0.09);
+  border-radius: 0.625rem;
+  background: var(--axon-control, var(--color-fd-secondary));
+  color: #71717a;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
 }
 
 #nd-sidebar [data-search-full]:hover {
-  border-color: #3f3f46;
-  background: #18181b;
+  border-color: rgb(167 139 250 / 0.3);
+  background: var(--axon-control-hover, var(--color-fd-accent));
   color: #f4f4f5;
 }
 
 #nd-sidebar [data-search-full] kbd {
   border-color: #27272a;
-  background: #000;
+  background: var(--color-fd-background);
   color: #71717a;
 }
 
 #nd-sidebar a,
 #nd-sidebar button {
+  position: relative;
+  z-index: 1;
   color: #a1a1aa;
+  transition: color 180ms ease, transform 180ms ease, background-color 180ms ease;
 }
 
 #nd-sidebar a:hover,
 #nd-sidebar button:hover {
-  background: #18181b !important;
+  background: rgb(255 255 255 / 0.035) !important;
   color: #f4f4f5 !important;
 }
 
 #nd-sidebar a[data-active="true"] {
-  background: rgb(139 92 246 / 0.12) !important;
+  background: transparent !important;
   color: #ddd6fe !important;
   font-weight: 600;
 }
@@ -117,12 +132,51 @@ body {
   color: #a78bfa;
 }
 
+#nd-sidebar a[data-active="true"]::after {
+  position: absolute;
+  top: 50%;
+  right: 0.625rem;
+  width: 4px;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: #a78bfa;
+  content: '';
+}
+
+.sidebar-active-indicator {
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid rgb(167 139 250 / 0.2);
+  border-radius: 0.5rem;
+  background: rgb(139 92 246 / 0.11);
+  pointer-events: none;
+  will-change: top, left, width, height;
+}
+
+.sidebar-active-indicator > span {
+  position: absolute;
+  top: 22%;
+  bottom: 22%;
+  left: 0;
+  width: 2px;
+  border-radius: 0 999px 999px 0;
+  background: #a78bfa;
+}
+
+#nd-sidebar [role="tree"],
+#nd-sidebar nav {
+  position: relative;
+  z-index: 1;
+}
+
 #nd-docs-layout article {
   --color-fd-primary: #a78bfa;
 }
 
 #nd-docs-layout main {
-  background: #000;
+  background: var(--axon-docs-surface, var(--color-fd-background));
 }
 
 #nd-docs-layout article {
@@ -158,7 +212,7 @@ body {
 
 #nd-docs-layout article pre {
   border-color: rgb(255 255 255 / 0.1);
-  background: #070707;
+  background: var(--axon-code-surface, var(--color-fd-secondary));
 }
 
 #nd-docs-layout article :not(pre) > code {
@@ -174,7 +228,7 @@ body {
 
 #nd-docs-layout article table {
   border-color: rgb(255 255 255 / 0.1);
-  background: #050505;
+  background: var(--axon-code-surface, var(--color-fd-secondary));
 }
 
 #nd-docs-layout article hr {

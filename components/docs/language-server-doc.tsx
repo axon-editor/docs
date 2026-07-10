@@ -387,17 +387,17 @@ export function LanguageServerDoc({ id }: { id: keyof typeof languageServers }) 
 
   return (
     <div className="not-prose my-8 space-y-8">
-      <div className="rounded-lg border border-white/10 bg-[#070707] p-5">
+      <div className="rounded-lg border border-black/10 bg-zinc-50 p-5 dark:border-white/10 dark:bg-[#070707]">
         <div className="mb-4 flex items-center gap-3">
           <div className="flex size-10 items-center justify-center rounded-md bg-violet-500/10 text-violet-300">
             <ServerCog className="size-5" />
           </div>
           <div>
-            <h2 className="m-0 text-lg font-semibold text-zinc-50">{doc.title}</h2>
+            <h2 className="m-0 text-lg font-semibold text-zinc-900 dark:text-zinc-50">{doc.title}</h2>
             <p className="m-0 text-sm text-zinc-500">{doc.server}</p>
           </div>
         </div>
-        <p className="text-sm leading-6 text-zinc-300">{doc.description}</p>
+        <p className="text-sm leading-6 text-zinc-700 dark:text-zinc-300">{doc.description}</p>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           <Info icon={PackageCheck} label="Delivery" value={doc.delivery} />
           <Info icon={Power} label="Activation" value={doc.activation} />
@@ -413,12 +413,12 @@ export function LanguageServerDoc({ id }: { id: keyof typeof languageServers }) 
 
 function Info({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
   return (
-    <div className="rounded-md border border-zinc-800 bg-black/30 p-4">
+    <div className="rounded-md border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-black/30">
       <div className="mb-2 flex items-center gap-2 text-xs font-medium uppercase text-zinc-500">
         <Icon className="size-4" />
         {label}
       </div>
-      <p className="m-0 text-sm leading-6 text-zinc-300">{value}</p>
+      <p className="m-0 text-sm leading-6 text-zinc-700 dark:text-zinc-300">{value}</p>
     </div>
   );
 }
