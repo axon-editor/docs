@@ -1,0 +1,79 @@
+---
+title: Recent Work
+description: Completed Axon improvements that have landed between releases.
+icon: ListChecks
+---
+
+Axon evolves continuously. This page records completed product work that has landed in the editor, including improvements that may arrive between formal release notes.
+
+## Editor And Language Tooling
+
+- Saves preserve the active scroll position and no longer reveal the end of the file as a side effect.
+- Change decorations replace their previous state instead of stacking repeated colors on the same line.
+- Definition navigation works across exported and imported symbols with command or control click as the explicit gesture.
+- TypeScript hover no longer produces competing stacked cards.
+- TypeScript and TSX completion includes exports from installed packages.
+- HTML supports template completion from `!`, while embedded HTML in JSX and TSX receives theme-aware tokens.
+- Breadcrumb symbol reveal filters snippet noise and focuses on real document structure.
+- `SingleEditor.tsx` was split below the 1,000-line project limit, with find behavior and performance marking moved into focused helpers.
+
+## Workbench And Appearance
+
+- Settings opens faster by deferring and coalescing expensive live preview work.
+- Shared command modals can use a fast path without blur or delayed closing.
+- Modal overlays use opaque theme-backed surfaces across Git, testing, updates, workspace tools, trust prompts, and agent confirmations.
+- File names retain their natural width and the file tree can scroll horizontally.
+- Context menus and portal-based UI inherit the active theme.
+- Zen mode reserves native window control areas so tabs remain usable on macOS and Windows.
+- The Welcome experience opens as a real editor tab with project actions and theme selection.
+- Markdown previews open as first-class editor tabs.
+- The main sidebar can dock on either side while Axon Agent remains on the opposite, resizable edge.
+
+## Extensions And Built-In Surfaces
+
+- Search and Settings ship as built-in extension manifests.
+- Git, Problems, Testing, and Agent declare command and view activation events.
+- Terminal contributes activation events, commands, a panel view, and its default profile.
+- Built-in extension preparation validates manifests through one registry step.
+- Catppuccin contributes a named, selectable icon theme record.
+- The built-in agent declares Axon Agent sidebar and local agent contributions.
+
+## Terminal And Agent Reliability
+
+- Terminal sessions survive panel hides and renderer reconnects with scrollback replay.
+- Slow renderer clients detach safely and resume from the last painted byte instead of losing long-running output.
+- A high-volume regression test verifies 1,500 ordered terminal output markers through the complete streaming path.
+- The terminal agent uses a branded Lip Gloss presentation layer and lightweight inline startup animation.
+- Interactive sessions preserve conversation history as real user and assistant turns.
+- `axon resume` includes an interactive workspace conversation picker.
+- `axon fix` reads current Problems, validates edit proposals, and restricts writes to the active workspace.
+- The CLI composer supports prompt history and multiline cursor movement.
+
+## Startup And Performance
+
+- A native Electron boot entry shows the splash before the heavy main-process graph loads.
+- The boot window is reused as the real editor window instead of creating an extra visible window.
+- The editor shell appears before `axon-core`, language servers, and local model warmup finish in the background.
+- Renderer marks cover boot, extension registry loading, workspace reads, restored sessions, CLI opens, first Monaco mount, and modal lifecycles.
+- Language servers start from the active file after the shell becomes usable.
+- Project diagnostics run on save or explicit refresh instead of blocking workspace restore.
+- Text reads and writes use capability-checked main-process I/O instead of taking a renderer-to-Core-to-filesystem round trip.
+- Restored tabs defer inactive Monaco models, language server synchronization, and watchers during first paint.
+- Language grammars load lazily through a shared tokenizer engine.
+- npm, Go, Cargo, pytest, and language server processes recover the developer shell environment when Axon starts from Finder or the Dock.
+
+## Security Foundations
+
+- `axon-core` listens on loopback and authenticates HTTP and WebSocket traffic with a per-launch secret.
+- Renderer windows use allow-listed IPC proxies instead of owning the Core bearer token.
+- Terminal sessions require short-lived, single-use tickets bound to approved working directories.
+- Workspace capabilities cover filesystem, settings, terminal, and Core operations.
+- Path checks resolve symlinks and validate the nearest existing ancestor before reads, writes, or file creation.
+- Navigation, local asset types, WebSocket origins, and destructive workspace-root operations are restricted.
+
+## Themes
+
+- Ayu Dark, Ayu Light, and Ayu Mirage are built-in themes.
+- The `SyntaxTheme` layer maps semantic captures to Monaco tokens with parent fallback.
+- JSON, YAML, TOML, CSS, and object keys use property colors instead of plain text fallback.
+- Theme definitions cover editor UI, syntax tokens, Monaco colors, and terminal ANSI palettes.

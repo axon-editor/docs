@@ -6,6 +6,12 @@ icon: Tags
 
 Axon uses GitHub Releases as the source of truth for changelog entries, release notes, and platform downloads.
 
+## Package Verification
+
+The release workflow targets macOS, Windows, and Linux packages. Before packaging completes, CI verifies that bundled language servers include their transitive runtime files so an incomplete tool bundle fails during release preparation instead of after installation.
+
+Package production does not imply that every release contains every platform artifact. Check the individual release notes for the assets that were successfully published.
+
 ## Release Flow
 
 1. Version is bumped in the editor package files.

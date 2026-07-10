@@ -1,0 +1,33 @@
+---
+title: Security And Workspace Trust
+description: How Axon protects local projects, privileged operations, and internal services.
+icon: ShieldCheck
+---
+
+Axon is local-first, but local software still needs explicit boundaries. The renderer, Electron main process, `axon-core`, terminal sessions, and workspace filesystem do not receive the same authority.
+
+## Core Authentication
+
+`axon-core` binds to the loopback interface and requires a per-launch secret for authenticated HTTP and WebSocket traffic. The renderer does not own that bearer token. Allow-listed main-process IPC proxies perform authenticated Core operations so arbitrary renderer code cannot directly reuse the credential.
+
+## Workspace Capabilities
+
+Each renderer window receives capabilities for its approved workspace. Filesystem, settings, terminal, and Core operations are checked against those capabilities before privileged work begins.
+
+Path validation resolves symbolic links and checks the nearest existing ancestor when a target does not exist yet. This prevents a create or write request from escaping the approved workspace through a symlink or a partially missing path.
+
+## Terminal Tickets
+
+Terminal WebSocket connections use short-lived, single-use tickets bound to an approved working directory. A ticket cannot be reused as a general terminal credential or silently redirected to another workspace.
+
+## Restricted Operations
+
+- Local navigation and asset types are allow-listed.
+- WebSocket origins are validated.
+- Reads, writes, and file creation remain inside approved workspace boundaries.
+- Destructive operations against a workspace root receive stronger restrictions.
+- The renderer uses capability-checked main-process I/O for text files instead of receiving unrestricted filesystem access.
+
+## Current Boundary
+
+The privileged backend checks are shipped. Visible trust state, capability revocation when a window changes workspace, extension permission prompts, and per-operation agent approval still need deeper product work. Axon does not present those incomplete surfaces as finished security controls.
