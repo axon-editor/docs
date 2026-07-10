@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { BackgroundRipple } from "@/components/ui/background-ripple";
 import {
   ArrowRight,
   Bot,
@@ -18,7 +19,6 @@ import {
   Package,
   Search,
   Settings,
-  Sparkles,
   Terminal,
   Wrench,
   type LucideIcon,
@@ -131,8 +131,15 @@ export function AxonHome() {
   }, [reduceMotion]);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-zinc-100">
-      <div className="pointer-events-none absolute left-1/2 top-[-24rem] h-[48rem] w-[60rem] -translate-x-1/2 rounded-full bg-violet-600/[0.12] blur-[140px]" />
+    <main className="relative min-h-screen overflow-hidden bg-white text-zinc-900 transition-colors dark:bg-black dark:text-zinc-100">
+      <BackgroundRipple />
+      <motion.div
+        aria-hidden="true"
+        initial={reduceMotion ? false : { opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.4, ease }}
+        className="pointer-events-none absolute left-1/2 top-0 h-[42rem] w-[68rem] -translate-x-1/2 [background:radial-gradient(ellipse_at_50%_0%,rgb(0_0_0/0.09)_0%,rgb(0_0_0/0.035)_38%,transparent_72%)] dark:[background:radial-gradient(ellipse_at_50%_0%,rgb(255_255_255/0.12)_0%,rgb(255_255_255/0.045)_38%,transparent_72%)]"
+      />
 
       <section className="relative px-5 pb-24 pt-20 sm:px-8 sm:pt-28 lg:pb-32 lg:pt-36">
         <div className="mx-auto max-w-7xl">
@@ -144,15 +151,14 @@ export function AxonHome() {
           >
             <Link
               href="/docs/updates"
-              className="group mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-zinc-400 backdrop-blur-xl transition hover:border-white/20 hover:text-zinc-200"
+              className="group mb-8 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-medium text-zinc-600 transition hover:border-black/20 hover:text-zinc-900 dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-400 dark:hover:border-white/20 dark:hover:text-zinc-200"
             >
-              <Sparkles className="size-3.5 text-violet-400" />
               Documentation for the latest Axon release
               <ChevronRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <h1 className="text-balance text-5xl font-semibold tracking-[-0.055em] text-white sm:text-7xl lg:text-[5.5rem] lg:leading-[0.98]">
+            <h1 className="text-balance text-5xl font-semibold tracking-[-0.055em] text-zinc-950 dark:text-white sm:text-7xl lg:text-[5.5rem] lg:leading-[0.98]">
               Everything about Axon.
-              <span className="relative mt-1 block h-[1.08em] overflow-hidden text-zinc-400">
+              <span className="relative mt-1 block h-[1.08em] overflow-hidden text-zinc-500 dark:text-zinc-400">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={heroMessages[messageIndex]}
@@ -175,7 +181,7 @@ export function AxonHome() {
                 </AnimatePresence>
               </span>
             </h1>
-            <p className="mx-auto mt-7 max-w-2xl text-balance text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
+            <p className="mx-auto mt-7 max-w-2xl text-balance text-base leading-7 text-zinc-600 dark:text-zinc-400 sm:text-lg sm:leading-8">
               Learn the editor, master its workspace tools, and extend your
               development environment, from your first project to a custom
               setup.
@@ -183,13 +189,13 @@ export function AxonHome() {
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
                 href="/docs"
-                className="button-shine inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-black transition hover:bg-zinc-200"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-zinc-950 px-5 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
               >
                 Get started <ArrowRight className="size-4" />
               </Link>
               <Link
                 href="https://github.com/axon-editor/axon"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-medium text-zinc-200 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.08]"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-black/10 bg-black/[0.03] px-5 text-sm font-medium text-zinc-700 transition hover:border-black/20 hover:bg-black/[0.06] dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-200 dark:hover:border-white/20 dark:hover:bg-white/[0.08]"
               >
                 <GitBranch className="size-4" /> View on GitHub
               </Link>
@@ -202,7 +208,6 @@ export function AxonHome() {
             transition={{ duration: 0.8, delay: 0.16, ease }}
             className="relative mx-auto mt-16 max-w-5xl sm:mt-20"
           >
-            <div className="absolute left-1/2 top-0 h-40 w-2/3 -translate-x-1/2 bg-violet-500/15 blur-[90px]" />
             <div className="relative overflow-hidden rounded-xl border border-white/15 bg-zinc-950 p-1.5">
               <div className="flex h-9 items-center gap-1.5 border-b border-white/[0.07] px-3">
                 <span className="size-2.5 rounded-full bg-zinc-700" />
@@ -225,7 +230,7 @@ export function AxonHome() {
         </div>
       </section>
 
-      <section className="relative border-y border-white/[0.07] bg-zinc-950/30 px-5 py-20 sm:px-8">
+      <section className="relative border-y border-black/[0.07] bg-zinc-50 px-5 py-20 dark:border-white/[0.07] dark:bg-zinc-950/30 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <SectionHeader
             eyebrow="Start here"
@@ -279,20 +284,20 @@ export function AxonHome() {
         </div>
       </section>
 
-      <section className="border-t border-white/[0.07] px-5 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-2xl border border-white/10 bg-[#050505] lg:grid-cols-2">
+      <section className="border-t border-black/[0.07] px-5 py-20 dark:border-white/[0.07] sm:px-8">
+        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-2xl border border-black/10 bg-zinc-50 dark:border-white/10 dark:bg-[#050505] lg:grid-cols-2">
           <div className="p-7 sm:p-10 lg:p-12">
             <div className="mb-6 flex size-11 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-500/10 text-violet-300">
               <Command className="size-5" />
             </div>
-            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white sm:text-3xl">
               The shortest path to productive.
             </h2>
-            <p className="mt-4 max-w-lg text-sm leading-7 text-zinc-400">
+            <p className="mt-4 max-w-lg text-sm leading-7 text-zinc-600 dark:text-zinc-400">
               Open the current directory, keep your tools scoped to the
               workspace, and let Axon carry project context across the editor.
             </p>
-            <div className="mt-7 space-y-3 text-sm text-zinc-300">
+            <div className="mt-7 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
               {[
                 "Workspace-aware from the first command",
                 "Integrated Git, terminal, and language tooling",
@@ -305,7 +310,7 @@ export function AxonHome() {
               ))}
             </div>
           </div>
-          <div className="border-t border-white/10 bg-black/40 p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+          <div className="border-t border-black/10 bg-white p-7 dark:border-white/10 dark:bg-black/40 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
             <div className="overflow-hidden rounded-xl border border-white/10 bg-[#070707]">
               <div className="flex items-center gap-2 border-b border-white/[0.08] px-4 py-3 text-xs text-zinc-500">
                 <Terminal className="size-3.5" /> terminal
@@ -332,7 +337,7 @@ export function AxonHome() {
         </div>
       </section>
 
-      <section className="border-t border-white/[0.07] px-5 py-16 sm:px-8">
+      <section className="border-t border-black/[0.07] px-5 py-16 dark:border-white/[0.07] sm:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-600">
             Reference &amp; resources
@@ -369,10 +374,10 @@ function SectionHeader({
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-400">
         {eyebrow}
       </p>
-      <h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
+      <h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-zinc-950 dark:text-white sm:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">
+      <p className="mt-4 text-sm leading-7 text-zinc-600 dark:text-zinc-400 sm:text-base">
         {description}
       </p>
     </div>
@@ -398,7 +403,7 @@ function FeatureCard({
     >
       <Link
         href={item.href}
-        className="feature-card group relative block h-full overflow-hidden rounded-xl border border-white/[0.09] bg-[#070707] p-6"
+        className="group relative block h-full overflow-hidden rounded-xl border border-black/[0.09] bg-zinc-50 p-6 transition duration-300 hover:-translate-y-1 hover:border-black/20 dark:border-white/[0.09] dark:bg-[#070707] dark:hover:border-white/20"
       >
         <div
           className={`relative flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] ${item.accent}`}
@@ -407,8 +412,8 @@ function FeatureCard({
         </div>
         <div className="relative mt-8 flex items-start justify-between gap-4">
           <div>
-            <h3 className="font-semibold text-zinc-100">{item.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-zinc-500 transition group-hover:text-zinc-400">
+            <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">{item.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-zinc-600 transition dark:text-zinc-500 dark:group-hover:text-zinc-400">
               {item.description}
             </p>
           </div>
