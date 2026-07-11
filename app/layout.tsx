@@ -1,25 +1,31 @@
-import { RootProvider } from 'fumadocs-ui/provider/next';
-import './global.css';
-import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
+import { RootProvider } from "fumadocs-ui/provider/next";
+import "./global.css";
+import { Inter } from "next/font/google";
+import type { Metadata } from "next";
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://axoneditor.com'),
+  metadataBase: new URL("https://axoneditor.com"),
   title: {
-    default: 'Axon Documentation',
-    template: '%s | Axon Documentation',
+    default: "Axon Documentation",
+    template: "%s | Axon Documentation",
   },
-  description: 'Documentation for Axon, the desktop code editor for workspace-aware development.',
+  description:
+    "Documentation for Axon, the desktop code editor for workspace-aware development.",
+  icons: {
+    icon: "/brand/axon.png",
+    shortcut: "/brand/axon.png",
+    apple: "/brand/axon.png",
+  },
 };
 
-export default function Layout({ children }: LayoutProps<'/'>) {
+export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen bg-black text-zinc-100">
+      <body className="flex min-h-screen flex-col bg-black text-zinc-100">
         <RootProvider>{children}</RootProvider>
       </body>
     </html>
