@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
       githubUrl={undefined}
       themeSwitch={{ enabled: false }}
       containerProps={{
-        style: { '--fd-sidebar-width': '232px' } as CSSProperties,
+        style: { '--fd-sidebar-width': '334px' } as CSSProperties,
       }}
     >
       <SidebarActiveIndicator />

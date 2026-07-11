@@ -138,7 +138,7 @@ export function AxonHome() {
         initial={reduceMotion ? false : { opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.4, ease }}
-        className="pointer-events-none absolute left-1/2 top-0 h-[42rem] w-[68rem] -translate-x-1/2 [background:radial-gradient(ellipse_at_50%_0%,rgb(0_0_0/0.09)_0%,rgb(0_0_0/0.035)_38%,transparent_72%)] dark:[background:radial-gradient(ellipse_at_50%_0%,rgb(255_255_255/0.12)_0%,rgb(255_255_255/0.045)_38%,transparent_72%)]"
+        className="pointer-events-none absolute left-1/2 top-0 h-[44rem] w-[72rem] -translate-x-1/2 [background:radial-gradient(ellipse_at_50%_0%,rgb(0_0_0/0.2)_0%,rgb(0_0_0/0.08)_42%,transparent_74%)] dark:[background:radial-gradient(ellipse_at_50%_0%,rgb(255_255_255/0.24)_0%,rgb(255_255_255/0.09)_42%,transparent_74%)]"
       />
 
       <section className="relative px-5 pb-24 pt-20 sm:px-8 sm:pt-28 lg:pb-32 lg:pt-36">

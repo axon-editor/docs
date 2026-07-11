@@ -60,7 +60,7 @@ body {
 
 #nd-docs-layout,
 #nd-docs-layout [data-sidebar-placeholder] {
-  --fd-sidebar-width: 232px !important;
+  --fd-sidebar-width: 334px !important;
 }
 
 #nd-subnav {
@@ -70,13 +70,12 @@ body {
 }
 
 #nd-sidebar {
-  position: relative;
   background: var(--axon-sidebar, var(--color-fd-card));
   border-color: rgb(255 255 255 / 0.08);
   color: #e4e4e7;
 }
 
-#nd-sidebar > div:first-child {
+#nd-sidebar>div:first-child {
   position: relative;
   z-index: 2;
   border-bottom: 1px solid rgb(255 255 255 / 0.07);
@@ -132,18 +131,6 @@ body {
   color: #a78bfa;
 }
 
-#nd-sidebar a[data-active="true"]::after {
-  position: absolute;
-  top: 50%;
-  right: 0.625rem;
-  width: 4px;
-  height: 4px;
-  transform: translateY(-50%);
-  border-radius: 999px;
-  background: #a78bfa;
-  content: '';
-}
-
 .sidebar-active-indicator {
   position: absolute;
   z-index: 0;
@@ -155,7 +142,7 @@ body {
   will-change: top, left, width, height;
 }
 
-.sidebar-active-indicator > span {
+.sidebar-active-indicator>span {
   position: absolute;
   top: 22%;
   bottom: 22%;
@@ -215,7 +202,7 @@ body {
   background: var(--axon-code-surface, var(--color-fd-secondary));
 }
 
-#nd-docs-layout article :not(pre) > code {
+#nd-docs-layout article :not(pre)>code {
   border: 1px solid rgb(167 139 250 / 0.16);
   background: rgb(139 92 246 / 0.08);
   color: #c4b5fd;
@@ -250,6 +237,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -264,7 +252,7 @@ body {
   scrollbar-color: #3f3f46 transparent;
 }
 
-#nd-sidebar > div:last-child > div {
+#nd-sidebar>div:last-child>div {
   border-color: #27272a;
   background: #09090b;
   color: #a1a1aa;
@@ -276,7 +264,7 @@ body {
   color: #e4e4e7 !important;
 }
 
-html > body[data-scroll-locked] {
+html>body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
 }
