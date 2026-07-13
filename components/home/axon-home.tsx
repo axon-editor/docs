@@ -47,7 +47,7 @@ const explore: DocLink[] = [
     description: "Tabs, panes, previews, hover, and workspace-native editing.",
     href: "/docs/features/editor",
     icon: Code2,
-    accent: "text-violet-300",
+    accent: "text-violet-700 dark:text-violet-300",
   },
   {
     title: "Axon Agent",
@@ -55,35 +55,35 @@ const explore: DocLink[] = [
       "Project-aware terminal sessions, commands, and commit drafts.",
     href: "/docs/features/axon-agent",
     icon: Bot,
-    accent: "text-violet-300",
+    accent: "text-violet-700 dark:text-violet-300",
   },
   {
     title: "Terminal",
     description: "PTY-backed tabs, replay, reconnect behavior, and CLI usage.",
     href: "/docs/features/terminal",
     icon: Terminal,
-    accent: "text-emerald-300",
+    accent: "text-emerald-700 dark:text-emerald-300",
   },
   {
     title: "Search",
     description: "Workspace search, quick find, results, and smart exclusions.",
     href: "/docs/features/search",
     icon: Search,
-    accent: "text-blue-300",
+    accent: "text-blue-700 dark:text-blue-300",
   },
   {
     title: "Git",
     description: "Status, diffs, history, branches, and assisted commits.",
     href: "/docs/features/git",
     icon: GitBranch,
-    accent: "text-orange-300",
+    accent: "text-orange-700 dark:text-orange-300",
   },
   {
     title: "Language servers",
     description: "TypeScript, Python, Go, Rust, Tailwind, Docker, and more.",
     href: "/docs/language-servers",
     icon: Braces,
-    accent: "text-pink-300",
+    accent: "text-pink-700 dark:text-pink-300",
   },
 ];
 
@@ -237,7 +237,7 @@ export function AxonHome() {
             title="From zero to flow in three steps."
             description="A focused path through installation, workspace setup, and the tools that make Axon feel fast."
           />
-          <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
+          <div className="overflow-hidden rounded-lg border border-black/[0.1] bg-white divide-y divide-black/[0.09] dark:divide-white/[0.08] dark:border-white/[0.08] dark:bg-black/20">
             {quickstart.map((item, index) => (
               <motion.div
                 key={item.href}
@@ -248,15 +248,15 @@ export function AxonHome() {
               >
                 <Link
                   href={item.href}
-                  className="group flex items-center gap-5 py-5"
+                  className="group flex items-center gap-5 px-4 py-5 transition-colors hover:bg-zinc-100 dark:hover:bg-white/[0.035] sm:px-5"
                 >
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-mono text-xs text-zinc-500 transition group-hover:border-violet-400/40 group-hover:text-violet-300">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/[0.03] font-mono text-xs text-zinc-600 transition group-hover:border-violet-600/40 group-hover:text-violet-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-500 dark:group-hover:border-violet-400/40 dark:group-hover:text-violet-300">
                     0{index + 1}
                   </span>
-                  <span className="font-medium text-zinc-200 transition group-hover:text-white">
+                  <span className="font-medium text-zinc-800 transition group-hover:text-black dark:text-zinc-200 dark:group-hover:text-white">
                     {item.title}
                   </span>
-                  <ArrowRight className="ml-auto size-4 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-white" />
+                  <ArrowRight className="ml-auto size-4 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-black dark:text-zinc-600 dark:group-hover:text-white" />
                 </Link>
               </motion.div>
             ))}
@@ -304,7 +304,7 @@ export function AxonHome() {
                 "Local agent sessions that understand the project",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <Check className="size-4 text-emerald-400" />
+                  <Check className="size-4 text-emerald-600 dark:text-emerald-400" />
                   {item}
                 </div>
               ))}
@@ -342,14 +342,14 @@ export function AxonHome() {
           <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-600">
             Reference &amp; resources
           </p>
-          <div className="grid border-l border-t border-white/[0.08] sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid border-l border-t border-black/[0.09] dark:border-white/[0.08] sm:grid-cols-2 lg:grid-cols-5">
             {references.map(({ title, href, icon: Icon }) => (
               <Link
                 key={href}
                 href={href}
-                className="group flex items-center gap-3 border-b border-r border-white/[0.08] p-4 text-sm text-zinc-400 transition hover:bg-white/[0.04] hover:text-white"
+                className="group flex items-center gap-3 border-b border-r border-black/[0.09] p-4 text-sm text-zinc-700 transition hover:bg-black/[0.04] hover:text-black dark:border-white/[0.08] dark:text-zinc-400 dark:hover:bg-white/[0.04] dark:hover:text-white"
               >
-                <Icon className="size-4 text-zinc-600 transition group-hover:text-violet-300" />
+                <Icon className="size-4 text-zinc-600 transition group-hover:text-violet-700 dark:group-hover:text-violet-300" />
                 {title}
               </Link>
             ))}
@@ -371,7 +371,7 @@ function SectionHeader({
 }) {
   return (
     <div className="max-w-2xl">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-400">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-400">
         {eyebrow}
       </p>
       <h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-zinc-950 dark:text-white sm:text-4xl">
@@ -406,7 +406,7 @@ function FeatureCard({
         className="group relative block h-full overflow-hidden rounded-xl border border-black/[0.09] bg-zinc-50 p-6 transition duration-300 hover:-translate-y-1 hover:border-black/20 dark:border-white/[0.09] dark:bg-[#070707] dark:hover:border-white/20"
       >
         <div
-          className={`relative flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] ${item.accent}`}
+          className={`relative flex size-10 items-center justify-center rounded-lg border border-black/10 bg-black/[0.03] dark:border-white/10 dark:bg-white/[0.03] ${item.accent}`}
         >
           <Icon className="size-4.5" />
         </div>
@@ -417,7 +417,7 @@ function FeatureCard({
               {item.description}
             </p>
           </div>
-          <ArrowRight className="mt-1 size-4 shrink-0 -translate-x-1 text-zinc-700 opacity-0 transition group-hover:translate-x-0 group-hover:text-zinc-300 group-hover:opacity-100" />
+          <ArrowRight className="mt-1 size-4 shrink-0 -translate-x-1 text-zinc-700 opacity-0 transition group-hover:translate-x-0 group-hover:text-zinc-900 group-hover:opacity-100 dark:group-hover:text-zinc-300" />
         </div>
       </Link>
     </motion.div>
