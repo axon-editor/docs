@@ -1,59 +1,31 @@
 ---
 title: Keybindings
-description: Customize keyboard shortcuts in Axon.
+description: Current keyboard shortcuts and customization status in Axon.
 icon: Keyboard
 ---
 
-Axon allows you to customize keyboard shortcuts to match your workflow. Keybindings are stored in `~/.axonc/keybindings.json`.
+Axon currently ships a fixed set of application shortcuts. A persisted user keybinding file and shortcut editor are not implemented yet, so the documentation does not claim a `keybindings.json` location or VS Code command compatibility.
 
 ## Defaults
 
 | Command | macOS | Windows / Linux |
 | --- | --- | --- |
-| New File | `Cmd+N` | `Ctrl+N` |
-| Open File | `Cmd+O` | `Ctrl+O` |
 | Save | `Cmd+S` | `Ctrl+S` |
-| Save All | `Cmd+Alt+S` | `Ctrl+Alt+S` |
 | Close Tab | `Cmd+W` | `Ctrl+W` |
 | Find | `Cmd+F` | `Ctrl+F` |
-| Replace | `Cmd+H` | `Ctrl+H` |
 | Find in Files | `Cmd+Shift+F` | `Ctrl+Shift+F` |
-| Command Palette | `Cmd+Shift+P` | `Ctrl+Shift+P` |
-| Toggle Terminal | `Cmd+\`` | `Ctrl+\`` |
-| Split Pane Right | `Cmd+\` | `Ctrl+\` |
+| Command Palette | `Cmd+P` | `Ctrl+P` |
+| Toggle Terminal | `Cmd+J` | `Ctrl+J` |
+| File Outline | `Cmd+Shift+O` | `Ctrl+Shift+O` |
+| Source Control | `Cmd+Shift+G` | `Ctrl+Shift+G` |
+| Compare Active File | `Cmd+Shift+D` | `Ctrl+Shift+D` |
+| Open Settings | `Cmd+,` | `Ctrl+,` |
+| Open Settings File | `Cmd+Shift+,` | `Ctrl+Shift+,` |
 | Go to Definition | `F12` | `F12` |
 | Find References | `Shift+F12` | `Shift+F12` |
-| Rename Symbol | `F2` | `F2` |
-| Format Document | `Shift+Alt+F` | `Shift+Alt+F` |
+| Next Problem | `F8` | `F8` |
+| Previous Problem | `Shift+F8` | `Shift+F8` |
 
-## Custom Keybindings
+## Customization Boundary
 
-```json
-[
-  {
-    "key": "ctrl+shift+r",
-    "command": "workbench.action.reloadWindow"
-  },
-  {
-    "key": "cmd+k cmd+s",
-    "command": "workbench.action.openSettings"
-  },
-  {
-    "key": "ctrl+shift+e",
-    "command": "workbench.view.explorer"
-  }
-]
-```
-
-## Removing Keybindings
-
-Set the command to `-` to remove a default binding.
-
-```json
-[
-  {
-    "key": "cmd+w",
-    "command": "-"
-  }
-]
-```
+Commands such as Rename Symbol, Format Document, pane splitting, testing, and task execution remain available through the command palette and their visible controls even when they do not have a global shortcut. User-defined overrides, chord bindings, and removal of defaults remain future work.

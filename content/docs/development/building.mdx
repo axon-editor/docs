@@ -8,8 +8,9 @@ Axon is open source. You can build the editor from source to test the latest cha
 
 ## Prerequisites
 
-- Node.js v18 or later.
-- Go v1.21 or later.
+- Node.js 22.x.
+- npm 10 or later.
+- Go v1.25.1 or later.
 - Git for cloning the repository.
 - `make` is optional for build scripts.
 
@@ -22,64 +23,47 @@ cd axon
 
 ## Development Mode
 
-You need two terminal sessions: one for the Go backend and one for the Electron frontend.
-
-### Terminal 1: Go Backend
+The root development command builds shared packages, starts `axon-core`, starts Vite, and launches Electron together:
 
 ```bash
-cd core
-go run cmd/axon/main.go
-```
-
-The backend runs on `localhost:7777`.
-
-### Terminal 2: Electron App
-
-```bash
-cd editor
 npm install
-npm run build:main
 npm run dev
 ```
+
+Development uses an authenticated Core service on `127.0.0.1:17777`. Packaged launches choose a private random port unless `AXON_CORE_PORT` is explicitly set.
 
 ## Production Build
 
 ```bash
-cd editor
 npm run build
-npm run pack
+npm --workspace axon run pack
 ```
 
 Platform packages:
 
 ```bash
-npm run dist:mac
-npm run dist:win
-npm run dist:linux
+npm --workspace axon run dist:mac
+npm --workspace axon run dist:win
+npm --workspace axon run dist:linux
 ```
 
-Build output goes to `editor/release/`.
+Build output goes to `apps/editor/release/`.
 
 ## Language Servers
 
 ```bash
-npm run build:language-servers
+npm --workspace axon run build:language-servers
 ```
 
 ## Project Structure
 
 ```txt
 axon/
-├── core/
-│   ├── cmd/axon/
-│   └── internal/
-│       ├── fs/
-│       ├── server/
-│       └── terminal/
-├── editor/
-│   ├── src/
-│   │   ├── main/
-│   │   ├── preload/
-│   │   └── renderer/
-└── docs/
+├── apps/editor/          # Electron, React, Monaco, preload, and main process
+├── services/core/        # Go backend, PTY sessions, filesystem, and agent CLI
+├── packages/             # shared extension, protocol, IPC, and config contracts
+├── extensions/           # built-in and local marketplace extension packages
+├── build/                # repository build orchestration
+├── tools/                # maintenance and validation scripts
+└── docs/                 # release and engineering notes
 ```

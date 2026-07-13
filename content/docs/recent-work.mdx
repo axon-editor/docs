@@ -8,6 +8,8 @@ Axon evolves continuously. This page records completed product work that has lan
 
 ## Editor And Language Tooling
 
+- Quoted Python dictionary keys now use property styling while quoted values remain strings.
+- Completion documentation and auto-import edits resolve lazily, hover ceilings are shorter, and the completion popup is narrower and denser.
 - Saves preserve the active scroll position and no longer reveal the end of the file as a side effect.
 - Change decorations replace their previous state instead of stacking repeated colors on the same line.
 - Definition navigation works across exported and imported symbols with command or control click as the explicit gesture.
@@ -19,6 +21,9 @@ Axon evolves continuously. This page records completed product work that has lan
 
 ## Workbench And Appearance
 
+- Git Graph opens as a searchable editor tab with delayed previews, selectable scrollable details, repository-structured changed files, and historical comparisons.
+- The project picker opens local folders or clones repositories with live progress before activating the destination.
+- HTML preview uses the full editor height and routes browser console messages to Output.
 - Settings opens faster by deferring and coalescing expensive live preview work.
 - Shared command modals can use a fast path without blur or delayed closing.
 - Modal overlays use opaque theme-backed surfaces across Git, testing, updates, workspace tools, trust prompts, and agent confirmations.
@@ -51,6 +56,8 @@ Axon evolves continuously. This page records completed product work that has lan
 
 ## Startup And Performance
 
+- Each packaged launch uses a private authenticated Core port so stale processes cannot intercept folder-opening requests.
+- Workspace traversal uses bounded asynchronous filesystem batches, and semantic-token refresh latency is reduced.
 - A native Electron boot entry shows the splash before the heavy main-process graph loads.
 - The boot window is reused as the real editor window instead of creating an extra visible window.
 - The editor shell appears before `axon-core`, language servers, and local model warmup finish in the background.

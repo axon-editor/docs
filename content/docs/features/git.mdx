@@ -6,12 +6,12 @@ icon: GitBranch
 
 import { Screenshot } from '@/components/docs/shared';
 
-Axon includes built-in Git support for version control workflows. You can view changes, inspect diffs, browse history, work with graph context, manage branches, stashes, worktrees, conflicts, and draft commit messages without leaving the editor.
+Axon includes built-in Git support for version control workflows. You can view changes, inspect diffs, browse a commit graph, manage branches, stashes, worktrees, conflicts, and draft commit messages without leaving the editor.
 
 <Screenshot
-  src="/media/screenshots/axon-latest-02.png"
-  alt="Axon Git commit detail showing metadata, changed files, and a side-by-side diff"
-  caption="Commit detail keeps metadata and changed files beside a full side-by-side diff so each revision can be reviewed in context."
+  src="/media/screenshots/axon-git-graph-details.png"
+  alt="Axon Git Graph with selected commit details, changed-file tree, and delayed hover preview"
+  caption="A selected commit opens scrollable details and its repository-structured changed files, while resting on a row reveals the delayed preview."
 />
 
 ## File Tree Status
@@ -35,12 +35,21 @@ Axon includes built-in Git support for version control workflows. You can view c
 - Write commit messages and commit.
 - Push and pull from remotes.
 - Inspect branch information.
-- Use graph, stash, worktree, and conflict surfaces as they mature.
+- Open the Git graph as a normal editor tab.
+
+## Commit Graph
+
+- Search commits by subject, author, hash, branch, or tag.
+- Inspect graph lanes, references, dates, authors, and short hashes in a stable table.
+- Rest the pointer or keyboard focus on a commit for two seconds to see a preview without selecting it.
+- Select a commit to open its independently scrollable details pane.
+- Browse changed files in their real, collapsible repository folder structure.
+- Select a changed file to open its commit-specific historical comparison view.
 
 <Screenshot
-  src="/media/screenshots/axon-latest-03.png"
-  alt="Axon Git history beside an editor completion list"
-  caption="Git history remains available beside the editor, allowing code navigation and language features to continue while revisions are inspected."
+  src="/media/screenshots/axon-git-graph.png"
+  alt="Axon Git graph open as an editor tab"
+  caption="Git history opens as a normal editor tab with searchable commits, graph lanes, references, and on-demand commit details."
 />
 
 ## Agent-Assisted Commits

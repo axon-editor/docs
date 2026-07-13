@@ -6,7 +6,7 @@ icon: Settings
 
 import { Screenshot } from '@/components/docs/shared';
 
-Axon stores configuration in `~/.axonc/settings.json`. You can edit settings through the Settings UI or directly in JSON.
+Axon stores user configuration in Electron's platform-specific application-data directory as `settings.json`. Use **Open Settings File** from Settings when you need the exact path. A project can also provide `axon.json` at its workspace root for project-level language and runtime choices.
 
 <Screenshot
   src="/media/screenshots/axon-latest-04.png"
@@ -24,15 +24,16 @@ Axon stores configuration in `~/.axonc/settings.json`. You can edit settings thr
 
 ```json
 {
-  "editor.fontSize": 14,
-  "editor.fontFamily": "Monaspace Neon",
-  "editor.fontLigatures": true,
-  "editor.lineHeight": 1.5,
-  "editor.minimap.enabled": true,
-  "editor.wordWrap": "off",
-  "editor.tabSize": 2,
-  "editor.renderWhitespace": "selection",
-  "editor.cursorBlink": "blink"
+  "editor": {
+    "fontPreset": "axon-default",
+    "fontFamily": ".AxonMono",
+    "fontSize": 14,
+    "lineHeight": 22,
+    "fontWeight": 400,
+    "fontLigatures": true,
+    "minimapEnabled": false,
+    "cursorBlinking": "expand"
+  }
 }
 ```
 
@@ -40,32 +41,39 @@ Axon stores configuration in `~/.axonc/settings.json`. You can edit settings thr
 
 ```json
 {
-  "window.zoomLevel": 0,
-  "workbench.colorTheme": "sora-dark",
-  "workbench.iconTheme": "catppuccin",
-  "editor.fontFamily": "Inter, system-ui"
+  "editor": {
+    "themeId": "ayu-dark",
+    "fontPreset": "axon-default",
+    "uiFontFamily": ".AxonSans",
+    "sidebarSide": "left"
+  }
 }
 ```
 
-## Terminal
+## Language Tools
 
 ```json
 {
-  "terminal.integrated.fontSize": 13,
-  "terminal.integrated.cursorBlink": true,
-  "terminal.integrated.shell.linux": "/bin/bash",
-  "terminal.integrated.shell.osx": "/bin/zsh"
+  "lsp": {
+    "enabled": true,
+    "pythonVirtualEnvPath": "",
+    "pythonInterpreterPath": ""
+  }
 }
 ```
 
-## Git And Extensions
+## Local Agent
 
 ```json
 {
-  "git.enabled": true,
-  "git.autofetch": true,
-  "git.confirmSync": true,
-  "extensions.autoUpdate": true,
-  "extensions.ignoreRecommendations": false
+  "ai": {
+    "enabled": true,
+    "provider": "local",
+    "model": "axon-code",
+    "apiKeyEnv": "",
+    "includeWorkspaceContext": true
+  }
 }
 ```
+
+Axon normalizes settings against the supported schema. VS Code-style dotted keys such as `editor.fontSize`, `git.autofetch`, or `terminal.integrated.shell.osx` are not Axon settings and should not be documented as active options.

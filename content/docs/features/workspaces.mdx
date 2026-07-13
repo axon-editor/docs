@@ -16,7 +16,13 @@ Some deeper per-root flows are still being completed. The foundation exists, but
 
 Workspace watchers use native filesystem events by default. Files added, changed, renamed, or removed by Finder, another editor, a build tool, or a terminal command can update the Axon file tree without polling the whole project.
 
+Each Electron window owns its file and Git watchers. A packaged-build heartbeat also refreshes Git decorations when a platform filesystem event is missed, including files created by an agent or external command.
+
 Polling is available only as a debugging option through `AXON_WATCH_USE_POLLING=1`.
+
+## Open Or Clone A Project
+
+The project picker can open an existing local folder or clone a Git repository. Clone progress is shown while Git transfers the repository, and a successful clone opens the destination as the active workspace automatically.
 
 ## Opening Projects From The CLI
 
@@ -26,3 +32,5 @@ axon /path/to/project
 ```
 
 When Axon is already running, a CLI folder request opens in a new managed Electron window instead of replacing the workspace in the current editor session.
+
+Packaged windows launch their own authenticated Core process on a private port. A stale Core process from an older window therefore cannot intercept and reject a new folder-opening request.

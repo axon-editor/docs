@@ -47,6 +47,8 @@ Use the editor find control for current-file search. Selected text seeds the que
 - Workspace replace skips binary, generated, and oversized files, then writes matching text files atomically.
 - Language grammars load as lazy chunks through a shared tokenizer engine.
 - Semantic coloring, language-server synchronization, and React snapshots are coalesced away from the per-keystroke path.
+- Completion documentation and auto-import edits resolve lazily for the focused item, while the completion popup stays narrow and dense.
+- JSON object keys and quoted Python dictionary keys use property styling; quoted values remain strings.
 
 ## Problems
 
@@ -65,6 +67,7 @@ Diagnostics from connected language servers are collected into a workspace view 
 - Command/control-click is the explicit jump-to-definition gesture for imported and exported symbols.
 - TypeScript hover rendering avoids competing stacked hover cards.
 - Embedded HTML in TSX/JSX receives themed token colors instead of falling back to plain white text.
+- HTML preview occupies the full editor height and sends browser console messages to Axon's Output tab instead of reserving a terminal below the preview.
 
 <Screenshot
   src="/media/screenshots/axon-latest-14.png"

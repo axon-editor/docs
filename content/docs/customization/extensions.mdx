@@ -16,10 +16,10 @@ Axon supports a declarative extension system. Extensions can add language suppor
 
 ## Installing Extensions
 
-Extensions are installed by adding them to the `extensions` directory in your Axon config folder:
+Use **Open User Extensions Folder** from Axon's Extensions surface to locate the platform-specific application-data directory. Workspace-local extensions live at:
 
 ```txt
-~/.axonc/extensions/
+<workspace>/.axon/extensions/
 ```
 
 ## Extension Structure
@@ -65,4 +65,4 @@ my-extension/
 
 ## Roadmap
 
-Language server support is implemented as built-in extensions. A full marketplace and discovery system is planned; current user extensions are installed manually.
+Language tooling and workbench surfaces are progressively owned by built-in extensions. Axon discovers built-in, user, workspace, and bundled local-marketplace packages, but executable third-party extensions remain blocked until the isolated process host and permission model are complete.
