@@ -156,7 +156,7 @@ export function AxonHome() {
               Documentation for the latest Axon release
               <ChevronRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <h1 className="text-balance text-5xl font-semibold tracking-[-0.055em] text-zinc-950 dark:text-white sm:text-7xl lg:text-[5.5rem] lg:leading-[0.98]">
+            <h1 className="text-balance text-2xl font-semibold tracking-normal text-zinc-950 dark:text-white sm:text-4xl md:text-6xl lg:text-[5.5rem] lg:leading-[0.98]">
               Everything about Axon.
               <span className="relative mt-1 block h-[1.08em] overflow-hidden text-zinc-500 dark:text-zinc-400">
                 <AnimatePresence mode="wait" initial={false}>
@@ -174,7 +174,7 @@ export function AxonHome() {
                         : { opacity: 0, y: "-45%", filter: "blur(8px)" }
                     }
                     transition={{ duration: 0.9, ease }}
-                    className="absolute inset-x-0 top-0 block"
+                    className="absolute inset-x-0 top-0 block whitespace-nowrap"
                   >
                     {heroMessages[messageIndex]}
                   </motion.span>
