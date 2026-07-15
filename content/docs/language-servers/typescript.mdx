@@ -13,3 +13,11 @@ import { LanguageServerDoc } from '@/components/docs/language-server-doc';
 TypeScript and TSX completion includes exports from installed packages. Component and icon libraries can therefore appear as import candidates instead of limiting suggestions to symbols already present in the workspace.
 
 Axon also supports TSX-aware React editing, themed embedded HTML, signature help, and external-definition navigation that prefers source files when a package provides them.
+
+## Workspace Project Discovery
+
+Axon scans the opened workspace for `tsconfig.json`, `tsconfig.*.json`, `jsconfig.json`, and `jsconfig.*.json` files while skipping dependencies, build output, caches, and generated directories. TypeScript itself parses each discovered config, including `extends`, `files`, `include`, `exclude`, compiler options, and path aliases.
+
+tsserver already discovers a config when it is an ancestor of the open file. Axon additionally registers configs whose file sets cross that directory boundary. This covers monorepos where a config under `apps/web` includes source under `packages/ui`, without hardcoding any Axon repository paths or requiring a duplicate config beside the package.
+
+Project registration refreshes when a TypeScript or JavaScript config is created, changed, or deleted. The refresh is debounced, and discovery yields between configs so large workspaces do not block terminal, file watcher, or renderer IPC.

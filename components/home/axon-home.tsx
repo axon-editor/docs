@@ -44,7 +44,8 @@ const quickstart = [
 const explore: DocLink[] = [
   {
     title: "Editor",
-    description: "Tabs, panes, previews, hover, and workspace-native editing.",
+    description:
+      "Tabs, panes, previews, code snapshots, formatting controls, and workspace-native editing.",
     href: "/docs/features/editor",
     icon: Code2,
     accent: "text-violet-700 dark:text-violet-300",

@@ -31,11 +31,22 @@ Axon stores user configuration in Electron's platform-specific application-data 
     "lineHeight": 22,
     "fontWeight": 400,
     "fontLigatures": true,
+    "tabSize": 2,
+    "insertSpaces": true,
+    "detectIndentation": true,
+    "codePaddingLeft": 10,
+    "indentationGuidesEnabled": true,
+    "highlightActiveIndentationGuide": true,
+    "bracketPairGuidesEnabled": true,
     "minimapEnabled": false,
     "cursorBlinking": "expand"
   }
 }
 ```
+
+`detectIndentation` lets Monaco infer indentation from each file. Changing tab size or spaces/tabs in the Settings UI turns detection off so those fixed choices apply immediately. `codePaddingLeft` accepts values from 0 through 64, while `tabSize` accepts 1 through 8.
+
+`indentationGuidesEnabled` controls the normal vertical indentation rails. `highlightActiveIndentationGuide` controls the active indentation rail and is available when indentation guides are visible. `bracketPairGuidesEnabled` controls bracket-pair scope guides; when normal indentation guides are hidden, Axon can still show the active bracket scope without restoring every vertical rail.
 
 ## Appearance
 

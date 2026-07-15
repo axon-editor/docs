@@ -8,6 +8,9 @@ Axon evolves continuously. This page records completed product work that has lan
 
 ## Editor And Language Tooling
 
+- Code Snapshot opens from the command palette or status bar and exports theme-aware PNGs with syntax colors, line controls, optional file metadata, and an Axon watermark.
+- Tab width, spaces versus tabs, automatic indentation detection, code left spacing, indentation guides, active-guide highlighting, and bracket-pair guides now update mounted editors immediately.
+- TypeScript discovers `tsconfig*.json` and `jsconfig*.json` throughout an opened workspace and registers configs that own files across directory boundaries, preventing sibling monorepo packages from falling into inferred projects.
 - Quoted Python dictionary keys now use property styling while quoted values remain strings.
 - Completion documentation and auto-import edits resolve lazily, hover ceilings are shorter, and the completion popup is narrower and denser.
 - Saves preserve the active scroll position and no longer reveal the end of the file as a side effect.

@@ -36,6 +36,20 @@ Markdown, images, videos, and HTML can open in preview surfaces. External links 
   caption="Markdown preview opens as an editor tab, so project notes and rendered docs stay inside the same workspace context."
 />
 
+## Code Snapshots
+
+Run **Code Snapshot** from the command palette or use the camera action in the status bar while a real file is active. Axon opens the snapshot builder as an editor tab instead of interrupting the current workspace with a modal.
+
+The builder can select a line range, rename the displayed file, change export width, padding, and font size, and toggle file metadata or line numbers. Palette choices include the active Axon theme plus Graphite, Paper, Forest, and Plum. Syntax colors come from the active theme capture table, so JSON object keys retain property styling instead of being flattened into ordinary strings.
+
+Copy PNG writes the rendered image to the system clipboard. Save PNG opens the native save dialog. Both actions wait for fonts, syntax rendering, and the Axon logo watermark before export, so the saved image matches the visible preview.
+
+## Indentation And Guides
+
+Editor settings control tab width, spaces or tabs, automatic indentation detection, code left spacing, indentation guides, active indentation highlighting, and bracket-pair guides. Changes apply to the mounted Monaco editor and shared text model immediately; reopening the file is not required.
+
+Changing tab width or spaces/tabs in Settings disables automatic detection so the selected fixed values take effect. Indentation guides can be hidden independently while bracket-pair guides retain the active scope indicator.
+
 ## Find In File
 
 Use the editor find control for current-file search. Selected text seeds the query when opening find, and editing the find query does not steal the original editor cursor after a query already exists.
