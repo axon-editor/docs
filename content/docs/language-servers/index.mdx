@@ -23,6 +23,20 @@ Axon uses language servers for real project intelligence. Monaco can tokenize an
 - TSX-aware React editing and HTML template completion from `!`.
 - Project-aware Problems that merge Monaco, language server, and project diagnostics.
 
+Syntax detection and basic color tokens do not depend on an installed language server. Axon can recognize and edit a supported file immediately, then offers the heavier server only when that language appears in the active workspace.
+
+## Language Tools
+
+Use the bolt action on the left side of the status bar to inspect languages detected in the current workspace. The Language Tools surface reports whether each relevant server is missing, available, starting, running, or failed.
+
+- Go and npm-backed servers such as TypeScript, Pyright, PHP, HTML, CSS, JSON, YAML, Docker, and Tailwind ship with Axon.
+- Native and runtime-heavy tools install on demand into Axon's application data instead of increasing every app download.
+- Install progress remains visible after switching files, supports parallel activities, and can be cancelled or retried.
+- Completed installs start the relevant server automatically and resynchronize the active document.
+- Failed initialization is removed cleanly so Refresh can launch a new process.
+
+The detected and install-on-demand catalog currently covers C/C++, Rust, Java, C#, Kotlin, Lua, Protocol Buffers, XML, SQL, Dart, Zig, TOML, LaTeX/BibTeX, Terraform/HCL, Clojure, Erlang, Haskell, Assembly, Swift, Ruby, Scala, R, PowerShell, and Makefile. Some entries use verified Axon downloads; ecosystem-managed entries use an available project runtime or package manager. Platform availability and prerequisites are shown by Language Tools before installation.
+
 ## Supported Pages
 
 <DocCards
@@ -38,6 +52,8 @@ Axon uses language servers for real project intelligence. Monaco can tokenize an
   ]}
 />
 
-## Root Rule
+## Workspace Context
 
-Open the folder that owns the project metadata. Most weak language-server behavior comes from opening a nested folder instead of the root that owns `package.json`, `tsconfig.json`, `go.mod`, `Cargo.toml`, `pyproject.toml`, `composer.json`, `.sln`, `pom.xml`, `build.gradle`, or `compile_commands.json`.
+Opening the folder that owns project metadata remains the strongest default because servers use `package.json`, `tsconfig.json`, `go.mod`, `Cargo.toml`, `pyproject.toml`, `composer.json`, `.sln`, `pom.xml`, `build.gradle`, and `compile_commands.json` to understand dependencies and build flags.
+
+Axon also starts a server from the active file, so standalone source files are not ignored. TypeScript discovers configs across monorepo directories, and Python can find environments inside the workspace or beside any of its three nearest ancestor folders.

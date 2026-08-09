@@ -23,14 +23,14 @@ cd axon
 
 ## Development Mode
 
-The root development command builds shared packages, starts `axon-core`, starts Vite, and launches Electron together:
+The root development command builds shared packages, starts `axon-core`, starts the dedicated `axon-pty-host`, starts Vite, and launches Electron together:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Development uses an authenticated Core service on `127.0.0.1:17777`. Packaged launches choose a private random port unless `AXON_CORE_PORT` is explicitly set.
+Development uses authenticated Core and PTY services on `127.0.0.1:17777` and `127.0.0.1:17778`. Packaged launches choose private ports unless `AXON_CORE_PORT` or `AXON_PTY_PORT` is explicitly set.
 
 ## Production Build
 
@@ -55,12 +55,14 @@ Build output goes to `apps/editor/release/`.
 npm --workspace axon run build:language-servers
 ```
 
+Normal release packaging keeps Go and npm-backed servers with Axon while native and runtime-heavy tools install through Language Tools. The download script is for development and language-tool preparation, not a requirement for every contributor running the editor.
+
 ## Project Structure
 
 ```txt
 axon/
 ├── apps/editor/          # Electron, React, Monaco, preload, and main process
-├── services/core/        # Go backend, PTY sessions, filesystem, and agent CLI
+├── services/core/        # Go Core, dedicated PTY host, filesystem, and agent CLI
 ├── packages/             # shared extension, protocol, IPC, and config contracts
 ├── extensions/           # built-in and local marketplace extension packages
 ├── build/                # repository build orchestration

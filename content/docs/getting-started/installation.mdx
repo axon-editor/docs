@@ -26,6 +26,7 @@ After launch, open a folder as the workspace. Axon expects real project roots be
 
 ## System Requirements
 
-- Node, Go, Rust, Java, .NET, PHP, Docker, or Python may still be required by the project you are editing.
-- Axon can bundle language-server binaries or npm servers, but language tooling still needs the project dependencies and runtimes that make the project valid.
-- Release builds should prefer bundled language-server resources over global binaries when they are available.
+- Project toolchains such as Node, Go, Rust, PHP, Python, Docker, or a build-specific JDK/.NET SDK may still be required to run, build, or test the project itself.
+- Go and npm-backed language servers ship with Axon. Native and runtime-heavy servers are installed from Language Tools only when their language is detected.
+- Java, Kotlin, Scala, C#, and PowerShell language tooling can use private runtimes installed under Axon's application data; these do not replace a project toolchain required by terminal builds.
+- Managed downloads are version-pinned, integrity-checked, extracted with archive traversal protection, and activated atomically after validation.

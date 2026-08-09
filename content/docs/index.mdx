@@ -75,6 +75,6 @@ Axon is a desktop code editor built around real workspace behavior: open a folde
 ## Important Notes
 
 - macOS builds are unsigned personal builds until signing and notarization are available.
-- Some language servers still need system runtimes such as a JDK, .NET SDK, Go, Rust, PHP, or Docker.
-- Python projects can use a selected virtual environment so imports and completions match the real project.
+- Native and runtime-heavy language servers install on demand, while Go and npm-backed servers ship with Axon.
+- Python projects automatically discover validated environments and expose both the environment folder and resolved interpreter in Settings.
 - Update checks use GitHub Releases, but unsigned macOS builds may still require manual replacement.

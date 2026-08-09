@@ -6,7 +6,7 @@ icon: Terminal
 
 import { Screenshot } from '@/components/docs/shared';
 
-Axon includes a PTY-backed integrated terminal owned by the Go backend and rendered through xterm.js. You can run commands, use Git, start tools, and keep terminal sessions alive while the panel hides, the renderer reconnects, or the workbench changes state.
+Axon includes a PTY-backed integrated terminal owned by a dedicated Go PTY host and rendered through xterm.js. The main Core service does not own terminal byte transport, so Core recovery and workspace operations cannot interrupt an otherwise healthy shell session.
 
 <Screenshot
   src="/media/screenshots/axon-latest-06.png"
@@ -33,10 +33,16 @@ Axon includes a PTY-backed integrated terminal owned by the Go backend and rende
 - WebSocket connection to the Go backend for real-time I/O.
 - Persistent sessions across renderer reloads.
 - Scrollback replay when a terminal view reconnects.
-- Backpressure handling for long-running agent output.
-- Slow renderer clients reconnect from the last painted byte instead of losing queued output.
+- 200,000 lines of visible xterm scrollback per terminal tab.
+- Bounded byte and write queues for long-running agent output.
+- Output acknowledgement only after xterm has committed the bytes, not merely when the renderer receives them.
+- Slow or reconnecting renderers resume from the last committed byte instead of skipping queued output.
+- Reading older scrollback does not enable live-tail following; newly committed output remains at its real buffer position until you scroll to it.
+- Frame-coalesced viewport repainting keeps detached scrollback visibly current after background output pushes rows beyond the viewport.
 - Small input bursts survive websocket reconnects.
 - Terminal profiles and panel activation are declared by the built-in terminal extension.
+
+Scrollback is intentionally bounded. Within the retained 200,000 lines, ordered output should remain visible unless the terminal is explicitly cleared, closed, or the oldest lines age out of that limit.
 
 ## Axon CLI
 

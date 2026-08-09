@@ -8,6 +8,8 @@ import { Screenshot, StepList } from '@/components/docs/shared';
 
 The first Axon workflow starts with a real project folder. Opening only a nested `src` directory can weaken Git, language-server, and dependency resolution because the editor may miss `package.json`, `go.mod`, `Cargo.toml`, `pyproject.toml`, or other project metadata.
 
+Nested monorepo work remains supported: TypeScript discovers owning configs across workspace directories, Python searches for validated environments inside the workspace and across three ancestor levels, and active source files can start their matching server even without a root marker.
+
 <Screenshot
   src="/media/screenshots/axon-latest-01.png"
   alt="Axon workspace file tree"
@@ -35,3 +37,4 @@ The first Axon workflow starts with a real project folder. Opening only a nested
 - Git decorations show changed, deleted, and untracked files.
 - Git Graph opens as an editor tab; selecting a changed commit file opens its historical comparison.
 - Language-server features improve after project dependencies are installed.
+- The status-bar bolt shows detected workspace languages, managed-tool downloads, startup/indexing state, failures, and refresh actions.

@@ -6,7 +6,7 @@ icon: CodeXml
 
 import { Screenshot } from '@/components/docs/shared';
 
-Axon's editor is built for daily project work: open files, keep multiple panes active, preview Markdown and media, and protect dirty changes before a tab closes. Recent stabilization work focused on preserving scroll position, avoiding editor flicker, and keeping Monaco state owned by the active editor instead of remounting surfaces unnecessarily.
+Axon's editor is built for daily project work: open files, keep multiple panes active, preview Markdown and media, and protect dirty changes before a tab closes. The Axon Buffer Engine keeps document identity, cached disk text, dirty state, and shared Monaco models stable while Monaco remains the text renderer and editing engine.
 
 <Screenshot
   src="/media/screenshots/axon-latest-10.png"
@@ -20,6 +20,8 @@ Files open into editor tabs. Tabs can be moved between panes, pinned, and closed
 
 Restored tabs do not all mount Monaco, synchronize with language servers, and start watchers during first paint. Axon restores the visible editing surface first and activates deeper work as the relevant file becomes active.
 
+Recently opened clean buffers remain available under bounded memory and entry budgets, so switching back to a file can attach its existing model without showing an empty one-line editor. Disk fingerprints and watcher invalidation prevent a cached buffer from hiding agent, formatter, or external file changes.
+
 <Screenshot
   src="/media/screenshots/axon-latest-15.png"
   alt="Axon buffer symbol picker listing functions in the active Go file"
@@ -29,6 +31,8 @@ Restored tabs do not all mount Monaco, synchronize with language servers, and st
 ## Previews
 
 Markdown, images, videos, and HTML can open in preview surfaces. External links use the system browser, while local Markdown links stay inside Axon when the target file exists in the workspace.
+
+Markdown preview supports GitHub-flavored tables and task lists, Mermaid diagrams, KaTeX math, footnotes, callouts, frontmatter, heading links, a generated table of contents, theme-aware highlighted code fences, copy actions, PDF export, and synchronized editor/preview scrolling. Preview tabs render the current dirty editor buffer instead of waiting for the file to be saved.
 
 <Screenshot
   src="/media/screenshots/axon-latest-18.png"
@@ -64,6 +68,12 @@ Use the editor find control for current-file search. Selected text seeds the que
 - Completion documentation and auto-import edits resolve lazily for the focused item, while the completion popup stays narrow and dense.
 - JSON object keys and quoted Python dictionary keys use property styling; quoted values remain strings.
 
+## Large Documents
+
+Files at or above 2 MB or 20,000 lines enter large-document mode. Axon keeps text editing and scrolling responsive while disabling expensive work such as semantic-token overlays, language-server synchronization, Git line paint, line trace, and unbounded find decoration creation.
+
+Workspace text reads are cached in the main process with metadata fingerprints, shared in-flight reads, and bounded memory. A file modified while it is being opened is retried instead of publishing mixed or stale bytes. Text files larger than 32 MB are rejected by the normal editor path rather than decoding enough data to freeze the app.
+
 ## Problems
 
 Diagnostics from connected language servers are collected into a workspace view where errors, warnings, information, and hints can be filtered before opening the affected file.
@@ -82,6 +92,7 @@ Diagnostics from connected language servers are collected into a workspace view 
 - TypeScript hover rendering avoids competing stacked hover cards.
 - Embedded HTML in TSX/JSX receives themed token colors instead of falling back to plain white text.
 - HTML preview occupies the full editor height and sends browser console messages to Axon's Output tab instead of reserving a terminal below the preview.
+- `Cmd/Ctrl+S` routes through the active editor model, preserves scroll position, records the new disk baseline, and refreshes Git paint without reopening the tab.
 
 <Screenshot
   src="/media/screenshots/axon-latest-14.png"

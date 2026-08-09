@@ -49,21 +49,21 @@ const languageServers = {
     description:
       'Python language intelligence for imports, virtual environments, diagnostics, completions, hover, navigation, formatting, and project symbols.',
     server: 'pyright / Python language tooling',
-    delivery: 'bundled server with project runtime awareness',
+    delivery: 'bundled Pyright server with automatic project environment discovery',
     activation: '.py files and Python workspaces',
     capabilities: [
-      'Resolves imports from the selected project environment.',
+      'Resolves imports from the detected or selected project environment and uses Python runtime probes to include real package and editable-source paths.',
       'Provides diagnostics, completions, hover, definition, references, rename, symbols, and formatting hooks.',
-      'Works best when the opened root contains pyproject.toml, requirements files, or the active virtual environment.',
+      'Recognizes arbitrary virtual-environment names through pyvenv.cfg instead of requiring .venv or venv.',
     ],
     setup: [
-      'Open the repository root, not only a nested package folder.',
-      'Select or activate the virtual environment used by the project.',
+      'Open a Python workspace or a nested monorepo package; Axon searches inside it and across three parent levels.',
+      'Let Axon detect pyvenv.cfg, Poetry, Pipenv, uv, pyenv, VIRTUAL_ENV, or CONDA_PREFIX, then override the result only when necessary.',
       'Install project dependencies so import analysis can see real packages.',
     ],
     troubleshooting: [
-      'Missing imports usually mean the wrong virtual environment is selected.',
-      'Weak completions often mean Axon opened the wrong folder root.',
+      'Check Settings > Language Intelligence to compare the detected environment folder with the resolved interpreter executable.',
+      'If several environments exist beside one ancestor, select the intended environment manually because Axon will not guess between them.',
       'Diagnostics can lag behind if the server is still indexing a large environment.',
     ],
   },
@@ -72,7 +72,7 @@ const languageServers = {
     description:
       'Go support for module-aware navigation, diagnostics, symbols, references, formatting, and code actions.',
     server: 'gopls',
-    delivery: 'system or bundled resolver depending on build',
+    delivery: 'bundled managed gopls',
     activation: '.go files and go.mod workspaces',
     capabilities: [
       'Uses go.mod and workspace metadata for package-aware completions and navigation.',
@@ -80,7 +80,7 @@ const languageServers = {
       'Surfaces project problems through Axon Problems and editor diagnostics.',
     ],
     setup: [
-      'Install Go and make sure gopls can run for the target project.',
+      'Install the Go toolchain required by the project; Axon supplies gopls.',
       'Open the folder that owns go.mod or go.work.',
       'Run go mod download when dependencies are not available locally.',
     ],
@@ -95,7 +95,7 @@ const languageServers = {
     description:
       'Rust language intelligence for Cargo projects, crate symbols, diagnostics, proc macro context, and code navigation.',
     server: 'rust-analyzer',
-    delivery: 'bundled or system rust-analyzer',
+    delivery: 'install-on-demand managed rust-analyzer',
     activation: '.rs files and Cargo.toml workspaces',
     capabilities: [
       'Reads Cargo metadata to understand crates, features, modules, tests, and examples.',
@@ -103,14 +103,14 @@ const languageServers = {
       'Works with project toolchains, targets, proc macros, and build scripts when the Rust setup is complete.',
     ],
     setup: [
-      'Install the Rust toolchain needed by the project.',
+      'Install rust-analyzer from Language Tools and keep the Rust toolchain needed by the project available.',
       'Open the folder that owns Cargo.toml.',
       'Check Cargo metadata errors when completions are missing crate symbols.',
     ],
     troubleshooting: [
       'Missing crate symbols usually mean Cargo metadata failed.',
       'Proc macro diagnostics depend on the project toolchain and targets.',
-      'Release packaging must include an executable rust-analyzer for the target platform.',
+      'If installation is interrupted, reopen Language Tools and retry or cancel the persisted activity.',
     ],
   },
   html: {
@@ -250,30 +250,30 @@ const languageServers = {
   java: {
     title: 'Java',
     description: 'Java project support for Maven/Gradle workspaces, diagnostics, navigation, symbols, and refactors.',
-    server: 'Java language server',
-    delivery: 'requires Java runtime and server resources',
+    server: 'Eclipse JDT Language Server',
+    delivery: 'install-on-demand JDT LS with an Axon-private Java runtime',
     activation: '.java files and Java project metadata',
     capabilities: [
       'Understands packages, imports, classes, methods, diagnostics, symbols, and refactors.',
-      'Works best with Maven or Gradle project metadata.',
-      'Uses the installed JDK for project analysis.',
+      'Works with Maven or Gradle project metadata and also activates for standalone .java files.',
+      'Runs from Axon-managed server resources and a private Java runtime instead of requiring a global JDK just to start JDT LS.',
     ],
     setup: [
-      'Install a compatible JDK.',
+      'Install Java support from Language Tools when Axon detects a Java file.',
       'Open the folder that owns pom.xml, build.gradle, or settings.gradle.',
-      'Allow the server time to import larger projects.',
+      'Allow the Starting state to finish while JDT LS imports and indexes larger projects.',
     ],
     troubleshooting: [
-      'Missing symbols often mean the project import failed.',
-      'Wrong JDK versions can create noisy diagnostics.',
-      'Large projects may need indexing time before navigation is complete.',
+      'A first hover can take longer while JDT LS performs its cold project import.',
+      'Use LSP Logs when Starting changes to Failed; refresh now creates a clean process instead of retaining a dead session.',
+      'Project builds may still require the project-specific JDK even though Axon supplies the runtime used by the language server.',
     ],
   },
   cpp: {
     title: 'C and C++',
     description: 'C/C++ support for diagnostics, navigation, symbols, formatting, and compile-database-aware intelligence.',
     server: 'clangd',
-    delivery: 'system or bundled clangd depending on platform',
+    delivery: 'install-on-demand managed clangd',
     activation: '.c, .cc, .cpp, .h, .hpp, and compile_commands.json',
     capabilities: [
       'Uses compile_commands.json for include paths, macros, standards, and build flags.',
@@ -281,7 +281,7 @@ const languageServers = {
       'Works best when the build system exports an accurate compile database.',
     ],
     setup: [
-      'Install clangd or use a build that bundles it.',
+      'Install clangd from Language Tools when Axon detects C or C++.',
       'Generate compile_commands.json from CMake, Ninja, Bear, or your build system.',
       'Open the folder where clangd can find that compile database.',
     ],
@@ -295,15 +295,15 @@ const languageServers = {
     title: 'C#',
     description: 'C# support for solution-aware completions, diagnostics, navigation, symbols, and refactors.',
     server: 'C# language server',
-    delivery: 'requires .NET runtime and server resources',
+    delivery: 'install-on-demand OmniSharp with an Axon-private .NET SDK',
     activation: '.cs files, .csproj files, and .sln workspaces',
     capabilities: [
       'Reads project and solution files to understand references, target frameworks, and generated context.',
       'Provides completions, hover, diagnostics, definitions, references, rename, and symbols.',
-      'Works best when the .NET SDK for the project is installed.',
+      'Uses Axon-managed OmniSharp and a private .NET SDK for the language-server process.',
     ],
     setup: [
-      'Install the .NET SDK required by the project.',
+      'Install C# support from Language Tools; Axon installs its language-server runtime dependency with it.',
       'Open the solution or project root.',
       'Restore packages before judging unresolved references.',
     ],
@@ -317,7 +317,7 @@ const languageServers = {
     title: 'Kotlin',
     description: 'Kotlin support for Gradle projects, diagnostics, navigation, symbols, and completions.',
     server: 'Kotlin language server',
-    delivery: 'requires Java runtime and Kotlin tooling',
+    delivery: 'install-on-demand Kotlin server with the shared Axon-private Java runtime',
     activation: '.kt and .kts files',
     capabilities: [
       'Understands Kotlin files, packages, classes, functions, symbols, and project diagnostics.',
@@ -325,7 +325,7 @@ const languageServers = {
       'Supports completions, hover, navigation, and formatting where the server supports it.',
     ],
     setup: [
-      'Install a compatible JDK.',
+      'Install Kotlin support from Language Tools when Axon detects .kt or .kts files.',
       'Open the Gradle project root.',
       'Let Gradle metadata load before judging unresolved symbols.',
     ],
@@ -339,7 +339,7 @@ const languageServers = {
     title: 'Lua',
     description: 'Lua support for completions, diagnostics, hover, symbols, formatting, and runtime-aware configuration.',
     server: 'Lua language server',
-    delivery: 'bundled or system server depending on build',
+    delivery: 'install-on-demand managed Lua Language Server',
     activation: '.lua files',
     capabilities: [
       'Provides completions, hover, diagnostics, definitions, references, symbols, and formatting.',
@@ -360,8 +360,8 @@ const languageServers = {
   php: {
     title: 'PHP',
     description: 'PHP support for Composer projects, diagnostics, navigation, symbols, and completions.',
-    server: 'PHP language server',
-    delivery: 'requires PHP runtime and server resources',
+    server: 'Intelephense',
+    delivery: 'bundled npm language server; project runtime remains external',
     activation: '.php files and composer.json workspaces',
     capabilities: [
       'Understands classes, namespaces, functions, methods, symbols, and diagnostics.',

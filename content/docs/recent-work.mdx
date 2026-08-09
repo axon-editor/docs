@@ -8,6 +8,14 @@ Axon evolves continuously. This page records completed product work that has lan
 
 ## Editor And Language Tooling
 
+- Axon Buffer Engine keeps path-keyed Monaco models, dirty state, and bounded retained buffers stable across tab and pane switches.
+- Main-process text caching joins concurrent reads, validates disk fingerprints, and invalidates cached content after writes and watcher events.
+- Large-document mode keeps files above 2 MB or 20,000 lines responsive by suppressing expensive editor decorations and language requests.
+- Markdown preview now includes GFM, Mermaid, KaTeX, footnotes, callouts, frontmatter, table of contents, heading links, highlighted code, copy actions, PDF export, and synchronized scrolling.
+- Python detects arbitrary virtual-environment names through pyvenv.cfg, runtime import paths, environment managers, active shell state, and unambiguous siblings across three ancestor levels.
+- Settings shows the Python project environment folder separately from the resolved interpreter executable.
+- Managed servers resynchronize active documents after installation, expose a real Starting state, and clean up failed initialization so Refresh can retry.
+- Java support activates for standalone files, uses an Axon-private runtime, and allows JVM indexing enough time for the first hover request.
 - Code Snapshot opens from the command palette or status bar and exports theme-aware PNGs with syntax colors, line controls, optional file metadata, and an Axon watermark.
 - Tab width, spaces versus tabs, automatic indentation detection, code left spacing, indentation guides, active-guide highlighting, and bracket-pair guides now update mounted editors immediately.
 - TypeScript discovers `tsconfig*.json` and `jsconfig*.json` throughout an opened workspace and registers configs that own files across directory boundaries, preventing sibling monorepo packages from falling into inferred projects.
@@ -48,6 +56,8 @@ Axon evolves continuously. This page records completed product work that has lan
 
 ## Terminal And Agent Reliability
 
+- Terminal byte transport now runs in a dedicated PTY host isolated from Core recovery and workspace HTTP work.
+- xterm acknowledgement advances only after bytes are committed, with 200,000-line scrollback and frame-coalesced repainting for readers above the live tail.
 - Terminal sessions survive panel hides and renderer reconnects with scrollback replay.
 - Slow renderer clients detach safely and resume from the last painted byte instead of losing long-running output.
 - A high-volume regression test verifies 1,500 ordered terminal output markers through the complete streaming path.
@@ -59,6 +69,8 @@ Axon evolves continuously. This page records completed product work that has lan
 
 ## Startup And Performance
 
+- Cancellable workspace search and bounded traversal stop obsolete searches from occupying the main process.
+- Watcher refreshes patch affected tree branches, preserve expanded folders, and reject stale asynchronous Git or filesystem results.
 - Each packaged launch uses a private authenticated Core port so stale processes cannot intercept folder-opening requests.
 - Workspace traversal uses bounded asynchronous filesystem batches, and semantic-token refresh latency is reduced.
 - A native Electron boot entry shows the splash before the heavy main-process graph loads.

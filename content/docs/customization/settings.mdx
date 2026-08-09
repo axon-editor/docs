@@ -73,6 +73,10 @@ Axon stores user configuration in Electron's platform-specific application-data 
 }
 ```
 
+Workspace language servers are managed from the bolt action in the left status bar rather than exposed as one long settings list. Axon detects the active workspace languages, shows install and startup state, and keeps download activity visible when you switch files.
+
+For Python workspaces, **Project environment folder** and **Interpreter executable** are separate fields. Axon fills both automatically when possible. Environment discovery validates `pyvenv.cfg` and the real Python executable, supports arbitrary directory names, and searches the workspace plus three ancestor levels for an unambiguous sibling environment. Poetry, Pipenv, uv, pyenv, active virtual environments, and Conda are also considered before Axon falls back to a system interpreter.
+
 ## Local Agent
 
 ```json

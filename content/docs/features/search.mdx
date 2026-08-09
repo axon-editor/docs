@@ -25,7 +25,9 @@ Axon provides full-text search across the workspace. Search through files, find 
 - Case-sensitive search.
 - Whole-word matching.
 - Regular expression patterns.
-- File exclusions for generated, vendor, and binary paths.
+- Project-aware exclusions from Git ignore rules, configured workspace exclusions, generated directories, vendor content, virtual environments, caches, and binary paths.
+- Cancellation of obsolete searches when the query or workspace changes.
+- Bounded asynchronous traversal so large directory trees do not block Electron's main thread.
 - Replace in files across multiple results.
 
 ## Results
@@ -38,16 +40,6 @@ Results are grouped by file with line numbers and surrounding context. Click any
   caption="Quick file search narrows the workspace by filename or path and opens the selected result directly in the editor."
 />
 
-## Default Exclusions
+## Exclusions
 
-```txt
-.git
-node_modules
-dist
-build
-out
-target
-__pycache__
-*.log
-*.bin
-```
+Axon combines built-in generated/binary safeguards with the active project's ignore configuration. It does not depend only on a short hardcoded folder-name list, so project-specific virtual environments, generated outputs, and ignored trees can remain outside normal search work.

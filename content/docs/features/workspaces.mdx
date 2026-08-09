@@ -18,6 +18,10 @@ Workspace watchers use native filesystem events by default. Files added, changed
 
 Each Electron window owns its file and Git watchers. A packaged-build heartbeat also refreshes Git decorations when a platform filesystem event is missed, including files created by an agent or external command.
 
+Watcher refreshes preserve loaded tree branches and patch the nearest affected directory instead of rebuilding the complete workspace tree. Latest-task guards prevent a slow older filesystem or Git request from replacing newer state, and cache invalidation keeps reopened files aligned with disk changes.
+
+Git initialization is also watched. Running `git init` in an already-open workspace activates repository state without closing and reopening the folder.
+
 Polling is available only as a debugging option through `AXON_WATCH_USE_POLLING=1`.
 
 ## Open Or Clone A Project
@@ -34,3 +38,5 @@ axon /path/to/project
 When Axon is already running, a CLI folder request opens in a new managed Electron window instead of replacing the workspace in the current editor session.
 
 Packaged windows launch their own authenticated Core process on a private port. A stale Core process from an older window therefore cannot intercept and reject a new folder-opening request.
+
+Each renderer window holds its own workspace capabilities, file and Git watchers, terminal connection, and workspace-scoped language-server state. Service processes may be shared within one app instance, but one window does not reuse another window's watcher or language lifecycle ownership.
