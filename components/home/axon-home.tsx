@@ -219,7 +219,7 @@ export function AxonHome() {
                 </span>
               </div>
               <Image
-                src="/media/screenshots/axon-latest-14.png"
+                src="/media/screenshots/captures/axon-capture-42.png"
                 alt="The Axon editor showing a development workspace"
                 width={1920}
                 height={1080}

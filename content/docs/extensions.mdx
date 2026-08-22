@@ -4,9 +4,15 @@ description: Axon extension manifest format, schema URL, contribution types, and
 icon: Package
 ---
 
-import { CommandTable } from '@/components/docs/shared';
+import { CommandTable, Screenshot } from '@/components/docs/shared';
 
 Axon reads extension manifests from built-ins, user extensions, workspace extensions, and the local marketplace. Themes and icons are registry data, while built-in workbench surfaces are being routed through activation events so the editor stops hard-coding every feature into the main app shell.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-35.png"
+  alt="Axon Extensions surface showing installed built-in extensions"
+  caption="The Extensions surface exposes installed packages, contribution counts, activation state, and package locations."
+/>
 
 ## Extension Layers
 

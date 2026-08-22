@@ -4,7 +4,15 @@ description: How Axon protects local projects, privileged operations, and intern
 icon: ShieldCheck
 ---
 
+import { Screenshot } from '@/components/docs/shared';
+
 Axon is local-first, but local software still needs explicit boundaries. The renderer, Electron main process, `axon-core`, terminal sessions, and workspace filesystem do not receive the same authority.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-66.png"
+  alt="Axon asking whether to trust a newly opened workspace"
+  caption="Workspace trust keeps project-aware execution behind an explicit decision when a folder is opened."
+/>
 
 ## Core Authentication
 

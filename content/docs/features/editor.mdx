@@ -9,9 +9,9 @@ import { Screenshot } from '@/components/docs/shared';
 Axon's editor is built for daily project work: open files, keep multiple panes active, preview Markdown and media, and protect dirty changes before a tab closes. The Axon Buffer Engine keeps document identity, cached disk text, dirty state, and shared Monaco models stable while Monaco remains the text renderer and editing engine.
 
 <Screenshot
-  src="/media/screenshots/axon-latest-10.png"
-  alt="Axon editor showing themed syntax"
-  caption="The editor view shows the current syntax-coloring pipeline inside a real workspace file."
+  src="/media/screenshots/captures/axon-capture-58.png"
+  alt="Axon editor showing TypeScript completions in a project workspace"
+  caption="The editor combines project files, themed syntax, diagnostics, breadcrumbs, and language-aware completion in one workspace surface."
 />
 
 ## Tabs and Panes
@@ -22,23 +22,11 @@ Restored tabs do not all mount Monaco, synchronize with language servers, and st
 
 Recently opened clean buffers remain available under bounded memory and entry budgets, so switching back to a file can attach its existing model without showing an empty one-line editor. Disk fingerprints and watcher invalidation prevent a cached buffer from hiding agent, formatter, or external file changes.
 
-<Screenshot
-  src="/media/screenshots/axon-latest-15.png"
-  alt="Axon buffer symbol picker listing functions in the active Go file"
-  caption="Buffer symbol search uses language intelligence to jump directly to functions and other declarations in the active file."
-/>
-
 ## Previews
 
 Markdown, images, videos, and HTML can open in preview surfaces. External links use the system browser, while local Markdown links stay inside Axon when the target file exists in the workspace.
 
 Markdown preview supports GitHub-flavored tables and task lists, Mermaid diagrams, KaTeX math, footnotes, callouts, frontmatter, heading links, a generated table of contents, theme-aware highlighted code fences, copy actions, PDF export, and synchronized editor/preview scrolling. Preview tabs render the current dirty editor buffer instead of waiting for the file to be saved.
-
-<Screenshot
-  src="/media/screenshots/axon-latest-18.png"
-  alt="Axon Markdown preview"
-  caption="Markdown preview opens as an editor tab, so project notes and rendered docs stay inside the same workspace context."
-/>
 
 ## Code Snapshots
 
@@ -78,12 +66,6 @@ Workspace text reads are cached in the main process with metadata fingerprints, 
 
 Diagnostics from connected language servers are collected into a workspace view where errors, warnings, information, and hints can be filtered before opening the affected file.
 
-<Screenshot
-  src="/media/screenshots/axon-latest-13.png"
-  alt="Axon Problems view grouping diagnostics by file and severity"
-  caption="The Problems surface groups diagnostics by file and keeps severity counts visible across the whole workspace."
-/>
-
 ## Stability Rules
 
 - Dirty saves preserve the current scroll position instead of jumping to the bottom of the file.
@@ -93,9 +75,3 @@ Diagnostics from connected language servers are collected into a workspace view 
 - Embedded HTML in TSX/JSX receives themed token colors instead of falling back to plain white text.
 - HTML preview occupies the full editor height and sends browser console messages to Axon's Output tab instead of reserving a terminal below the preview.
 - `Cmd/Ctrl+S` routes through the active editor model, preserves scroll position, records the new disk baseline, and refreshes Git paint without reopening the tab.
-
-<Screenshot
-  src="/media/screenshots/axon-latest-14.png"
-  alt="Axon editor hover tooltip"
-  caption="Hover details appear inline with the current code instead of becoming a detached surface that interrupts reading."
-/>
