@@ -4,6 +4,8 @@ description: Build Axon from source code.
 icon: Wrench
 ---
 
+import { AxonProjectStructure } from '@/components/docs/project-tree';
+
 Axon is open source. You can build the editor from source to test the latest changes, contribute patches, or create custom builds.
 
 ## Prerequisites
@@ -59,13 +61,4 @@ Normal release packaging keeps Go and npm-backed servers with Axon while native 
 
 ## Project Structure
 
-```txt
-axon/
-├── apps/editor/          # Electron, React, Monaco, preload, and main process
-├── services/core/        # Go Core, dedicated PTY host, filesystem, and agent CLI
-├── packages/             # shared extension, protocol, IPC, and config contracts
-├── extensions/           # built-in and local marketplace extension packages
-├── build/                # repository build orchestration
-├── tools/                # maintenance and validation scripts
-└── docs/                 # release and engineering notes
-```
+<AxonProjectStructure />
