@@ -1,4 +1,5 @@
 {
   "title": "Development",
+  "icon": "CodeXml",
   "pages": ["building", "contributing", "release-process"]
 }

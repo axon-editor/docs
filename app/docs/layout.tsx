@@ -1,7 +1,11 @@
 import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { baseOptions } from '@/lib/layout.shared';
-import { SidebarActiveIndicator } from '@/components/docs/sidebar-active-indicator';
+import {
+  axonDocsSidebarSlots,
+  DocsSidebarBanner,
+  DocsSidebarFooter,
+} from '@/components/docs/axon-docs-sidebar';
 
 export default function Layout({ children }: LayoutProps<'/docs'>) {
   return (
@@ -10,8 +14,12 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
       {...baseOptions()}
       githubUrl={undefined}
       themeSwitch={{ enabled: false }}
+      slots={{ sidebar: axonDocsSidebarSlots }}
+      sidebar={{
+        banner: <DocsSidebarBanner />,
+        footer: <DocsSidebarFooter />,
+      }}
     >
-      <SidebarActiveIndicator />
       {children}
     </DocsLayout>
   );

@@ -1,5 +1,6 @@
 {
   "title": "Language Servers",
+  "icon": "Braces",
   "pages": [
     "index",
     "typescript",

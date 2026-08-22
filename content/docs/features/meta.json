@@ -1,4 +1,5 @@
 {
   "title": "Features",
+  "icon": "PanelsTopLeft",
   "pages": ["editor", "split-panes", "search", "terminal", "git", "testing", "workspaces", "axon-agent"]
 }

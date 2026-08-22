@@ -53,9 +53,10 @@ export function DocCards({ items }: { items: CardItem[] }) {
           <StaggerItem key={item.href}>
             <Link
               href={item.href}
-              className="group block h-full rounded-lg border border-black/10 bg-zinc-50 p-5 transition hover:-translate-y-0.5 hover:border-violet-500/30 hover:bg-zinc-100 dark:border-white/[0.09] dark:bg-[#070707] dark:hover:bg-[#0a0a0a]"
+              data-doc-accent={item.icon ?? "panel"}
+              className="docs-card group block h-full rounded-xl border p-5"
             >
-              <div className="mb-4 flex size-10 items-center justify-center rounded-md border border-white/10 bg-black text-zinc-400 transition group-hover:text-violet-300">
+              <div className="docs-card-icon mb-5 flex size-10 items-center justify-center rounded-lg border">
                 <Icon className="size-5" />
               </div>
               <h3 className="m-0 text-base font-semibold text-zinc-900 dark:text-zinc-50">
@@ -82,16 +83,16 @@ export function Screenshot({
   caption: string;
 }) {
   return (
-    <figure className="not-prose my-8 min-w-0 max-w-full overflow-hidden rounded-lg border border-black/10 bg-zinc-100 dark:border-white/10 dark:bg-zinc-950">
+    <figure className="docs-screenshot docs-motion-item not-prose my-10 min-w-0 max-w-full overflow-hidden rounded-xl border">
       <Image
         src={src}
         alt={alt}
         width={1920}
-        height={1080}
+        height={1200}
         sizes="(min-width: 1024px) 900px, 100vw"
-        className="block h-auto max-w-full"
+        className="block h-auto w-full max-w-full"
       />
-      <figcaption className="border-t border-black/10 bg-zinc-50 px-4 py-3 text-sm leading-6 text-zinc-700 dark:border-white/10 dark:bg-zinc-950 dark:text-zinc-300">
+      <figcaption className="border-t px-4 py-3 text-sm leading-6">
         {caption}
       </figcaption>
     </figure>
@@ -100,7 +101,7 @@ export function Screenshot({
 
 export function CommandTable({ rows }: { rows: [string, string][] }) {
   return (
-    <div className="not-prose my-8 overflow-hidden rounded-lg border border-black/10 bg-zinc-50 dark:border-white/10 dark:bg-[#070707]">
+    <div className="docs-motion-item not-prose my-8 overflow-hidden rounded-xl border border-black/10 bg-zinc-50 dark:border-white/10 dark:bg-[#101012]">
       {rows.map(([command, description]) => (
         <div
           key={command}
@@ -116,7 +117,7 @@ export function CommandTable({ rows }: { rows: [string, string][] }) {
 
 export function StepList({ steps }: { steps: string[] }) {
   return (
-    <div className="not-prose my-8 overflow-hidden rounded-lg border border-black/10 bg-zinc-50 dark:border-white/10 dark:bg-[#070707]">
+    <div className="docs-motion-item not-prose my-8 overflow-hidden rounded-xl border border-black/10 bg-zinc-50 dark:border-white/10 dark:bg-[#101012]">
       {steps.map((step, index) => (
         <div
           key={step}

@@ -23,18 +23,19 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const MDX = page.data.body;
   const markdownUrl = getPageMarkdownUrl(page).url;
   const githubUrl = `https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`;
+  const section = page.url.split('/').filter(Boolean)[1]?.replaceAll('-', ' ') ?? 'overview';
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <DocsPageShell>
         <div className="docs-page-heading">
-          <div className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-violet-400">
-            <span className="size-1.5 rounded-full bg-violet-400" />
-            Axon documentation
+          <div className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#f0a06b]">
+            <span className="h-px w-8 bg-[#f0a06b]" />
+            <span className="capitalize">{section}</span>
           </div>
           <DocsTitle>{page.data.title}</DocsTitle>
           <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
-          <div className="mt-6 flex flex-row items-center gap-2 border-b border-white/[0.08] pb-6">
+          <div className="docs-heading-actions mt-7 flex flex-row items-center gap-2 border-t border-white/[0.08] pt-5">
             <MarkdownCopyButton markdownUrl={markdownUrl} />
             <ViewOptionsPopover markdownUrl={markdownUrl} githubUrl={githubUrl} />
           </div>
