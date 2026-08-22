@@ -48,6 +48,12 @@ Axon stores user configuration in Electron's platform-specific application-data 
 
 `indentationGuidesEnabled` controls the normal vertical indentation rails. `highlightActiveIndentationGuide` controls the active indentation rail and is available when indentation guides are visible. `bracketPairGuidesEnabled` controls bracket-pair scope guides; when normal indentation guides are hidden, Axon can still show the active bracket scope without restoring every vertical rail.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-17.png"
+  alt="Axon Fonts settings for importing and selecting editor fonts"
+  caption="Font import and selection stay inside Settings so interface and editor typography can be managed without editing configuration files."
+/>
+
 ## Appearance
 
 ```json
@@ -60,6 +66,12 @@ Axon stores user configuration in Electron's platform-specific application-data 
   }
 }
 ```
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-15.png"
+  alt="Axon background settings showing image, opacity, and glass blur controls"
+  caption="Background controls expose image selection, workbench opacity, and native glass blur as separate appearance choices."
+/>
 
 ## Language Tools
 
@@ -74,6 +86,12 @@ Axon stores user configuration in Electron's platform-specific application-data 
 ```
 
 Workspace language servers are managed from the bolt action in the left status bar rather than exposed as one long settings list. Axon detects the active workspace languages, shows install and startup state, and keeps download activity visible when you switch files.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-16.png"
+  alt="Axon Language Servers settings showing enablement and tool access"
+  caption="Language-server settings control the global intelligence boundary while Language Tools handles per-workspace server state."
+/>
 
 For Python workspaces, **Project environment folder** and **Interpreter executable** are separate fields. Axon fills both automatically when possible. Environment discovery validates `pyvenv.cfg` and the real Python executable, supports arbitrary directory names, and searches the workspace plus three ancestor levels for an unambiguous sibling environment. Poetry, Pipenv, uv, pyenv, active virtual environments, and Conda are also considered before Axon falls back to a system interpreter.
 
@@ -92,3 +110,9 @@ For Python workspaces, **Project environment folder** and **Interpreter executab
 ```
 
 Axon normalizes settings against the supported schema. VS Code-style dotted keys such as `editor.fontSize`, `git.autofetch`, or `terminal.integrated.shell.osx` are not Axon settings and should not be documented as active options.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-18.png"
+  alt="Axon Agent settings showing provider, model, and workspace context controls"
+  caption="Local Agent settings keep model selection and project-context behavior explicit."
+/>

@@ -23,6 +23,18 @@ Axon uses language servers for real project intelligence. Monaco can tokenize an
 - TSX-aware React editing and HTML template completion from `!`.
 - Project-aware Problems that merge Monaco, language server, and project diagnostics.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-58.png"
+  alt="Axon TypeScript editor showing project-aware completion suggestions"
+  caption="Completion combines the active document, workspace symbols, installed packages, and server-provided detail."
+/>
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-57.png"
+  alt="Axon Go editor showing function documentation in a hover"
+  caption="Hover resolves declaration signatures and documentation without moving away from the current code."
+/>
+
 Syntax detection and basic color tokens do not depend on an installed language server. Axon can recognize and edit a supported file immediately, then offers the heavier server only when that language appears in the active workspace.
 
 ## Language Tools
@@ -34,6 +46,18 @@ Use the bolt action on the left side of the status bar to inspect languages dete
 - Install progress remains visible after switching files, supports parallel activities, and can be cancelled or retried.
 - Completed installs start the relevant server automatically and resynchronize the active document.
 - Failed initialization is removed cleanly so Refresh can launch a new process.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-26.png"
+  alt="Axon Language Tools catalog showing ready, available, and missing analyzers"
+  caption="The complete catalog distinguishes ready, installable, unavailable, and runtime-dependent tools."
+/>
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-45.png"
+  alt="Axon Problems view showing diagnostics produced by language tooling"
+  caption="Language diagnostics converge in Problems with severity, provider, code, file, and exact source location."
+/>
 
 The detected and install-on-demand catalog currently covers C/C++, Rust, Java, C#, Kotlin, Lua, Protocol Buffers, XML, SQL, Dart, Zig, TOML, LaTeX/BibTeX, Terraform/HCL, Clojure, Erlang, Haskell, Assembly, Swift, Ruby, Scala, R, PowerShell, and Makefile. Some entries use verified Axon downloads; ecosystem-managed entries use an available project runtime or package manager. Platform availability and prerequisites are shown by Language Tools before installation.
 

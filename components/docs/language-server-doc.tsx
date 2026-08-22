@@ -8,6 +8,7 @@ import {
   Wrench,
   type LucideIcon,
 } from 'lucide-react';
+import { Screenshot } from './shared';
 
 type LanguageServer = {
   title: string;
@@ -385,6 +386,24 @@ export function LanguageServerDoc({ id }: { id: keyof typeof languageServers }) 
   const doc = languageServers[id];
   if (!doc) notFound();
 
+  const image = id === 'typescript'
+    ? '/media/screenshots/captures/axon-capture-58.png'
+    : id === 'go'
+      ? '/media/screenshots/captures/axon-capture-57.png'
+      : '/media/screenshots/captures/axon-capture-26.png';
+
+  const imageAlt = id === 'typescript'
+    ? 'Axon TypeScript editor showing project-aware completion suggestions'
+    : id === 'go'
+      ? 'Axon Go editor showing language-server hover documentation'
+      : `Axon Language Tools showing availability for ${doc.title} and other analyzers`;
+
+  const imageCaption = id === 'typescript'
+    ? 'TypeScript completion resolves workspace symbols and installed-package exports inside the active project.'
+    : id === 'go'
+      ? 'Go hover resolves the declaration signature and package documentation through gopls.'
+      : `${doc.title} is managed through Language Tools alongside the rest of the workspace analyzer catalog.`;
+
   return (
     <div className="not-prose my-8 space-y-8">
       <div className="rounded-lg border border-black/10 bg-zinc-50 p-5 dark:border-white/10 dark:bg-[#070707]">
@@ -403,6 +422,8 @@ export function LanguageServerDoc({ id }: { id: keyof typeof languageServers }) 
           <Info icon={Power} label="Activation" value={doc.activation} />
         </div>
       </div>
+
+      <Screenshot src={image} alt={imageAlt} caption={imageCaption} />
 
       <ListBlock icon={CheckCircle2} title="Capabilities" items={doc.capabilities} />
       <ListBlock icon={Wrench} title="Setup" items={doc.setup} />

@@ -22,6 +22,12 @@ Restored tabs do not all mount Monaco, synchronize with language servers, and st
 
 Recently opened clean buffers remain available under bounded memory and entry budgets, so switching back to a file can attach its existing model without showing an empty one-line editor. Disk fingerprints and watcher invalidation prevent a cached buffer from hiding agent, formatter, or external file changes.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-42.png"
+  alt="Axon workspace with TypeScript and Go files open in separate panes"
+  caption="Tabs and panes keep related files visible together while each pane retains its own tab, breadcrumb, cursor, and scroll state."
+/>
+
 ## Previews
 
 Markdown, images, videos, and HTML can open in preview surfaces. External links use the system browser, while local Markdown links stay inside Axon when the target file exists in the workspace.
@@ -42,9 +48,21 @@ Editor settings control tab width, spaces or tabs, automatic indentation detecti
 
 Changing tab width or spaces/tabs in Settings disables automatic detection so the selected fixed values take effect. Indentation guides can be hidden independently while bracket-pair guides retain the active scope indicator.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-12.png"
+  alt="Axon Editor settings showing typography and code spacing controls"
+  caption="Editor controls apply typography, line height, and code spacing without reopening the active file."
+/>
+
 ## Find In File
 
 Use the editor find control for current-file search. Selected text seeds the query when opening find, and editing the find query does not steal the original editor cursor after a query already exists.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-19.png"
+  alt="Axon buffer symbol picker listing declarations in a Go file"
+  caption="Buffer navigation narrows the active file to symbols and jumps directly to the selected declaration."
+/>
 
 ## File Commands
 
@@ -56,15 +74,33 @@ Use the editor find control for current-file search. Selected text seeds the que
 - Completion documentation and auto-import edits resolve lazily for the focused item, while the completion popup stays narrow and dense.
 - JSON object keys and quoted Python dictionary keys use property styling; quoted values remain strings.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-41.png"
+  alt="Axon command palette listing editor and workbench commands"
+  caption="File, view, Git, Agent, and workspace actions remain available through the searchable command palette."
+/>
+
 ## Large Documents
 
 Files at or above 2 MB or 20,000 lines enter large-document mode. Axon keeps text editing and scrolling responsive while disabling expensive work such as semantic-token overlays, language-server synchronization, Git line paint, line trace, and unbounded find decoration creation.
 
 Workspace text reads are cached in the main process with metadata fingerprints, shared in-flight reads, and bounded memory. A file modified while it is being opened is retried instead of publishing mixed or stale bytes. Text files larger than 32 MB are rejected by the normal editor path rather than decoding enough data to freeze the app.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-34.png"
+  alt="Axon Zen mode showing a focused full-window code editor"
+  caption="Focused editing removes nonessential workbench chrome while keeping the active document and its navigation context available."
+/>
+
 ## Problems
 
 Diagnostics from connected language servers are collected into a workspace view where errors, warnings, information, and hints can be filtered before opening the affected file.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-45.png"
+  alt="Axon Problems view grouping warnings and hints by file"
+  caption="Problems groups project diagnostics by file and keeps severity totals, sources, codes, and locations visible."
+/>
 
 ## Stability Rules
 
@@ -75,3 +111,9 @@ Diagnostics from connected language servers are collected into a workspace view 
 - Embedded HTML in TSX/JSX receives themed token colors instead of falling back to plain white text.
 - HTML preview occupies the full editor height and sends browser console messages to Axon's Output tab instead of reserving a terminal below the preview.
 - `Cmd/Ctrl+S` routes through the active editor model, preserves scroll position, records the new disk baseline, and refreshes Git paint without reopening the tab.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-52.png"
+  alt="Axon Output panel listing workspace, language server, and panel events"
+  caption="Output keeps workspace and service activity inspectable without replacing the active editor or terminal."
+/>

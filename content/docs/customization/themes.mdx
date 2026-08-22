@@ -21,11 +21,23 @@ Axon includes a built-in dark theme with Catppuccin-inspired colors. You can cus
 - Monaco, workbench, and terminal colors derived from the active theme.
 - Monaspace Neon for code and Inter for the interface.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-15.png"
+  alt="Axon appearance controls for workbench background and glass blur"
+  caption="Themes can be combined with a background image and native glass without baking those effects into syntax colors."
+/>
+
 Axon's `SyntaxTheme` layer maps semantic captures such as functions, methods, properties, types, tags, selectors, punctuation, and string variants onto Monaco token names. Capture lookup falls back from a specific child capture to its parent, so themes can remain consistent across languages without defining every possible token path.
 
 ## Changing Themes
 
 Open the Command Palette with `Cmd+Shift+P` or `Ctrl+Shift+P`, then type `Theme` to switch themes.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-41.png"
+  alt="Axon command palette listing searchable workbench commands"
+  caption="Theme switching is available through the same searchable command surface as the rest of the workbench."
+/>
 
 ## Custom Theme Example
 
@@ -65,3 +77,9 @@ Open the Command Palette with `Cmd+Shift+P` or `Ctrl+Shift+P`, then type `Theme`
   "editor.fontLigatures": true
 }
 ```
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-17.png"
+  alt="Axon font manager showing imported editor fonts"
+  caption="Imported fonts become selectable editor choices while Axon retains configured fallback families."
+/>

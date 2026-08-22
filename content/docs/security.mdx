@@ -24,6 +24,12 @@ Each renderer window receives capabilities for its approved workspace. Filesyste
 
 Path validation resolves symbolic links and checks the nearest existing ancestor when a target does not exist yet. This prevents a create or write request from escaping the approved workspace through a symlink or a partially missing path.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-50.png"
+  alt="Axon confirmation dialog for marking an active workspace untrusted"
+  caption="Revoking trust explains which project-aware execution surfaces will stop before the workspace capability changes."
+/>
+
 ## Terminal Tickets
 
 Terminal WebSocket connections use short-lived, single-use tickets bound to an approved working directory. A ticket cannot be reused as a general terminal credential or silently redirected to another workspace.

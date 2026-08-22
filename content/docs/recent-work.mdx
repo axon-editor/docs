@@ -4,6 +4,8 @@ description: Completed Axon improvements that have landed between releases.
 icon: ListChecks
 ---
 
+import { Screenshot } from '@/components/docs/shared';
+
 Axon evolves continuously. This page records completed product work that has landed in the editor, including improvements that may arrive between formal release notes.
 
 ## Editor And Language Tooling
@@ -30,6 +32,12 @@ Axon evolves continuously. This page records completed product work that has lan
 - Breadcrumb symbol reveal filters snippet noise and focuses on real document structure.
 - `SingleEditor.tsx` was split below the 1,000-line project limit, with find behavior and performance marking moved into focused helpers.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-58.png"
+  alt="Axon TypeScript editor showing dense project-aware completion"
+  caption="Recent editor work tightened completion, token color, diagnostics, and project-aware language behavior."
+/>
+
 ## Workbench And Appearance
 
 - Git Graph opens as a searchable editor tab with delayed previews, selectable scrollable details, repository-structured changed files, and historical comparisons.
@@ -45,6 +53,12 @@ Axon evolves continuously. This page records completed product work that has lan
 - Markdown previews open as first-class editor tabs.
 - The main sidebar can dock on either side while Axon Agent remains on the opposite, resizable edge.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-15.png"
+  alt="Axon background settings showing workbench opacity and glass blur"
+  caption="Workbench appearance now separates themes, background media, opacity, and native glass controls."
+/>
+
 ## Extensions And Built-In Surfaces
 
 - Search and Settings ship as built-in extension manifests.
@@ -53,6 +67,12 @@ Axon evolves continuously. This page records completed product work that has lan
 - Built-in extension preparation validates manifests through one registry step.
 - Catppuccin contributes a named, selectable icon theme record.
 - The built-in agent declares Axon Agent sidebar and local agent contributions.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-35.png"
+  alt="Axon Extensions surface showing installed built-in contributions"
+  caption="Built-in workbench surfaces now appear through extension-shaped packages with visible contribution and activation state."
+/>
 
 ## Terminal And Agent Reliability
 
@@ -66,6 +86,12 @@ Axon evolves continuously. This page records completed product work that has lan
 - `axon resume` includes an interactive workspace conversation picker.
 - `axon fix` reads current Problems, validates edit proposals, and restricts writes to the active workspace.
 - The CLI composer supports prompt history and multiline cursor movement.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-08.png"
+  alt="Axon integrated terminal open inside the active workspace"
+  caption="Terminal sessions remain attached to the project while PTY ownership and replay continue outside the React panel lifecycle."
+/>
 
 ## Startup And Performance
 
@@ -84,6 +110,12 @@ Axon evolves continuously. This page records completed product work that has lan
 - Language grammars load lazily through a shared tokenizer engine.
 - npm, Go, Cargo, pytest, and language server processes recover the developer shell environment when Axon starts from Finder or the Dock.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-52.png"
+  alt="Axon Output panel showing workspace and language service startup"
+  caption="Startup and background service milestones remain inspectable while the editor becomes usable first."
+/>
+
 ## Security Foundations
 
 - `axon-core` listens on loopback and authenticates HTTP and WebSocket traffic with a per-launch secret.
@@ -93,9 +125,21 @@ Axon evolves continuously. This page records completed product work that has lan
 - Path checks resolve symlinks and validate the nearest existing ancestor before reads, writes, or file creation.
 - Navigation, local asset types, WebSocket origins, and destructive workspace-root operations are restricted.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-66.png"
+  alt="Axon workspace trust prompt for a newly opened project"
+  caption="Workspace-aware execution begins only after the user makes an explicit trust decision."
+/>
+
 ## Themes
 
 - Ayu Dark, Ayu Light, and Ayu Mirage are built-in themes.
 - The `SyntaxTheme` layer maps semantic captures to Monaco tokens with parent fallback.
 - JSON, YAML, TOML, CSS, and object keys use property colors instead of plain text fallback.
 - Theme definitions cover editor UI, syntax tokens, Monaco colors, and terminal ANSI palettes.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-11.png"
+  alt="Axon appearance settings showing the active theme and interface font"
+  caption="Themes now drive workbench chrome and editor tokens while retaining separate font and background controls."
+/>

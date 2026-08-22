@@ -37,6 +37,12 @@ Axon includes built-in Git support for version control workflows. You can view c
 - Inspect branch information.
 - Open the Git graph as a normal editor tab.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-62.png"
+  alt="Axon Source Control showing a modified file and its full diff"
+  caption="Source Control keeps the changed-file list, staging controls, commit field, and selected file diff in one surface."
+/>
+
 ## Commit Graph
 
 - Search commits by subject, author, hash, branch, or tag.
@@ -46,9 +52,27 @@ Axon includes built-in Git support for version control workflows. You can view c
 - Browse changed files in their real, collapsible repository folder structure.
 - Select a changed file to open its commit-specific historical comparison view.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-29.png"
+  alt="Axon Git Graph showing searchable commit history and graph lanes"
+  caption="The graph overview keeps commit subjects, authors, dates, references, hashes, and graph lanes aligned in a stable table."
+/>
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-23.png"
+  alt="Axon Git history showing a historical CSS diff"
+  caption="Selecting a changed file opens its commit-specific comparison without losing the surrounding repository history."
+/>
+
 ## Agent-Assisted Commits
 
 Axon Agent can draft commit messages from the current Git diff. The terminal command `axon commit` reads staged changes, streams a message draft, and asks before running `git commit`.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-22.png"
+  alt="Axon Git history sidebar listing recent commits"
+  caption="Recent history remains available from the sidebar for quick commit inspection before a deeper graph review."
+/>
 
 ## Still Improving
 

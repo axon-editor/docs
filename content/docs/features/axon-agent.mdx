@@ -20,6 +20,12 @@ The agent is designed to work from Axon's project state: Problems, Git, terminal
 
 ## Terminal Command
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-08.png"
+  alt="Axon integrated terminal ready for a project-aware command"
+  caption="Terminal-native Agent commands run inside the same workspace-owned shell surface as normal project commands."
+/>
+
 <CommandTable
   rows={[
     ['axon', 'Start a terminal-native Axon Agent conversation in the current workspace.'],
@@ -45,6 +51,12 @@ Interactive terminal sessions preserve conversation history as real user and ass
 ## Workspace-Safe Fixes
 
 `axon fix` reads the Problems snapshot exported by the open editor, sends exact diagnostics to the local agent, parses the proposed edits separately from normal chat text, and validates every path before writing inside the active workspace.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-45.png"
+  alt="Axon Problems view showing diagnostics available to workspace-safe fixes"
+  caption="Workspace-safe fixes begin from structured Problems entries with exact files, locations, sources, and diagnostic codes."
+/>
 
 ## Still Being Built
 

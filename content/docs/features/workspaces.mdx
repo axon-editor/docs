@@ -30,11 +30,23 @@ Watcher refreshes preserve loaded tree branches and patch the nearest affected d
 
 Git initialization is also watched. Running `git init` in an already-open workspace activates repository state without closing and reopening the folder.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-52.png"
+  alt="Axon Output panel showing workspace restoration and file watcher activity"
+  caption="Workspace restore, file-tree loading, watcher activation, and language-service startup remain visible in Output."
+/>
+
 Polling is available only as a debugging option through `AXON_WATCH_USE_POLLING=1`.
 
 ## Open Or Clone A Project
 
 The project picker can open an existing local folder or clone a Git repository. Clone progress is shown while Git transfers the repository, and a successful clone opens the destination as the active workspace automatically.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-65.png"
+  alt="Axon Clone Repository form requesting a repository URL and destination"
+  caption="Repository cloning shares the project picker with local folders and opens the chosen destination as a workspace."
+/>
 
 ## Opening Projects From The CLI
 
@@ -44,6 +56,12 @@ axon /path/to/project
 ```
 
 When Axon is already running, a CLI folder request opens in a new managed Electron window instead of replacing the workspace in the current editor session.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-51.png"
+  alt="Axon workspace context menu with file, folder, terminal, and path actions"
+  caption="Workspace-root actions keep creation, terminal opening, and path copying scoped to the selected project."
+/>
 
 Packaged windows launch their own authenticated Core process on a private port. A stale Core process from an older window therefore cannot intercept and reject a new folder-opening request.
 

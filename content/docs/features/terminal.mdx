@@ -26,6 +26,12 @@ Axon includes a PTY-backed integrated terminal owned by a dedicated Go PTY host 
 - Close a tab with its close button.
 - Rename a tab by double-clicking the tab title.
 
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-47.png"
+  alt="Axon new-item menu offering a new terminal alongside file actions"
+  caption="The workbench create menu can open a terminal without moving away from the current workspace."
+/>
+
 ## Behavior
 
 - Full PTY support for interactive programs.
@@ -43,6 +49,12 @@ Axon includes a PTY-backed integrated terminal owned by a dedicated Go PTY host 
 - Terminal profiles and panel activation are declared by the built-in terminal extension.
 
 Scrollback is intentionally bounded. Within the retained 200,000 lines, ordered output should remain visible unless the terminal is explicitly cleared, closed, or the oldest lines age out of that limit.
+
+<Screenshot
+  src="/media/screenshots/captures/axon-capture-13.png"
+  alt="Axon Terminal settings showing GPU acceleration controls"
+  caption="Terminal rendering controls stay explicit so users can tune GPU acceleration without changing shell ownership or replay behavior."
+/>
 
 ## Axon CLI
 
